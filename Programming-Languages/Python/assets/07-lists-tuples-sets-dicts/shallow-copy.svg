@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 400" role="img" aria-labelledby="title desc">
+  <title id="title">Shallow copy shares nested objects</title>
+  <desc id="desc">a.copy() makes a new outer list but reuses the same inner list reference.</desc>
+  <defs>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; fill: #111827; }
+      .title { font-size: 26px; font-weight: 700; }
+      .subtitle { font-size: 14px; fill: #4b5563; }
+      .heading { font-size: 15px; font-weight: 700; }
+      .body { font-size: 13px; }
+      .mono { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 12px; fill: #be185d; }
+    </style>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <rect width="1180" height="400" fill="#ffffff"/>
+  <text x="590" y="36" class="title" text-anchor="middle">a = [[1], 2]; b = a.copy() — shallow</text>
+  <text x="590" y="62" class="subtitle" text-anchor="middle">New outer list. Same inner list object. Mutating the nested list shows up in both.</text>
+
+  <rect x="80" y="110" width="200" height="100" rx="10" fill="#eff6ff" stroke="#0284c7" stroke-width="2"/>
+  <text x="180" y="150" class="heading" text-anchor="middle" style="fill:#075985">list a</text>
+  <text x="180" y="185" class="mono" text-anchor="middle">[0]→  [1]→</text>
+
+  <rect x="80" y="250" width="200" height="100" rx="10" fill="#dbeafe" stroke="#0284c7" stroke-width="2"/>
+  <text x="180" y="290" class="heading" text-anchor="middle" style="fill:#075985">list b (copy)</text>
+  <text x="180" y="325" class="mono" text-anchor="middle">[0]→  [1]→</text>
+
+  <line x1="280" y1="160" x2="400" y2="200" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="280" y1="300" x2="400" y2="220" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="280" y1="185" x2="620" y2="185" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="280" y1="325" x2="620" y2="300" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+
+  <rect x="410" y="160" width="180" height="100" rx="10" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="500" y="200" class="heading" text-anchor="middle" style="fill:#92400e">shared list</text>
+  <text x="500" y="235" class="mono" text-anchor="middle">[1] → then [1, 9]</text>
+
+  <rect x="630" y="140" width="160" height="70" rx="10" fill="#ecfdf5" stroke="#22c55e" stroke-width="2"/>
+  <text x="710" y="170" class="heading" text-anchor="middle" style="fill:#166534">int 2</text>
+  <text x="710" y="195" class="mono" text-anchor="middle">(immutable)</text>
+
+  <rect x="630" y="260" width="160" height="70" rx="10" fill="#ecfdf5" stroke="#22c55e" stroke-width="2"/>
+  <text x="710" y="290" class="heading" text-anchor="middle" style="fill:#166534">int 2</text>
+  <text x="710" y="315" class="small" text-anchor="middle" style="font-size:12px;fill:#4b5563">same or equal ok</text>
+
+  <rect x="840" y="130" width="300" height="210" rx="12" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+  <text x="990" y="170" class="heading" text-anchor="middle">After a[0].append(9)</text>
+  <text x="870" y="215" class="mono">a → [[1, 9], 2]</text>
+  <text x="870" y="250" class="mono">b → [[1, 9], 2]</text>
+  <text x="870" y="295" class="body">deepcopy if you need a full tree</text>
+  <text x="870" y="320" class="body">of independent objects.</text>
+</svg>

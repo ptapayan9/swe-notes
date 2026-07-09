@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 420" role="img" aria-labelledby="title desc">
+  <title id="title">Argument binding order</title>
+  <desc id="desc">Positional, keyword, *args, and **kwargs fill the parameter slots of a call.</desc>
+  <defs>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; fill: #111827; }
+      .title { font-size: 26px; font-weight: 700; }
+      .subtitle { font-size: 14px; fill: #4b5563; }
+      .heading { font-size: 15px; font-weight: 700; }
+      .body { font-size: 13px; }
+      .mono { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 12px; fill: #be185d; }
+      .small { font-size: 12px; fill: #4b5563; }
+    </style>
+  </defs>
+  <rect width="1180" height="420" fill="#ffffff"/>
+  <text x="590" y="36" class="title" text-anchor="middle">How a call fills parameters</text>
+  <text x="590" y="62" class="subtitle" text-anchor="middle">def f(a, b=0, *args, c, **kwargs)  ←  f(1, 2, 3, c=4, d=5)</text>
+
+  <rect x="40" y="100" width="1100" height="90" rx="12" fill="#eff6ff" stroke="#0284c7" stroke-width="2"/>
+  <text x="70" y="140" class="heading" style="fill:#075985">Call site</text>
+  <text x="70" y="170" class="mono">f(1, 2, 3, c=4, d=5)</text>
+
+  <rect x="40" y="220" width="200" height="150" rx="12" fill="#ecfdf5" stroke="#22c55e" stroke-width="2"/>
+  <text x="140" y="255" class="heading" text-anchor="middle" style="fill:#166534">a = 1</text>
+  <text x="140" y="290" class="small" text-anchor="middle">positional</text>
+  <text x="140" y="325" class="mono" text-anchor="middle">required</text>
+
+  <rect x="260" y="220" width="200" height="150" rx="12" fill="#ecfdf5" stroke="#22c55e" stroke-width="2"/>
+  <text x="360" y="255" class="heading" text-anchor="middle" style="fill:#166534">b = 2</text>
+  <text x="360" y="290" class="small" text-anchor="middle">positional</text>
+  <text x="360" y="325" class="mono" text-anchor="middle">has default 0</text>
+
+  <rect x="480" y="220" width="200" height="150" rx="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="580" y="255" class="heading" text-anchor="middle" style="fill:#92400e">args = (3,)</text>
+  <text x="580" y="290" class="small" text-anchor="middle">*args extras</text>
+  <text x="580" y="325" class="mono" text-anchor="middle">tuple</text>
+
+  <rect x="700" y="220" width="200" height="150" rx="12" fill="#fdf2f8" stroke="#ec4899" stroke-width="2"/>
+  <text x="800" y="255" class="heading" text-anchor="middle" style="fill:#9d174d">c = 4</text>
+  <text x="800" y="290" class="small" text-anchor="middle">keyword-only</text>
+  <text x="800" y="325" class="mono" text-anchor="middle">after *args</text>
+
+  <rect x="920" y="220" width="220" height="150" rx="12" fill="#ede9fe" stroke="#8b5cf6" stroke-width="2"/>
+  <text x="1030" y="255" class="heading" text-anchor="middle" style="fill:#5b21b6">kwargs = {d:5}</text>
+  <text x="1030" y="290" class="small" text-anchor="middle">**kwargs rest</text>
+  <text x="1030" y="325" class="mono" text-anchor="middle">dict</text>
+</svg>

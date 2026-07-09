@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 420" role="img" aria-labelledby="title desc">
+  <title id="title">Import search flow simplified</title>
+  <desc id="desc">sys.modules cache then sys.path walk then load module or package.</desc>
+  <defs>
+    <style>
+      text {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        fill: #111827;
+      }
+      .title { font-size: 28px; font-weight: 700; }
+      .subtitle { font-size: 14px; fill: #4b5563; }
+      .heading { font-size: 15px; font-weight: 700; }
+      .body { font-size: 13px; }
+      .mono {
+        font-family: "SF Mono", Menlo, Consolas, monospace;
+        font-size: 12px;
+        fill: #be185d;
+      }
+      .white { fill: #ffffff; }
+    </style>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+
+  <rect width="1180" height="420" fill="#ffffff"/>
+  <text x="590" y="36" class="title" text-anchor="middle">import myapp.core.service — simplified flow</text>
+  <text x="590" y="62" class="subtitle" text-anchor="middle">Python does not search “near this file” first. It uses the import system + sys.path.</text>
+
+  <rect x="40" y="100" width="250" height="200" rx="12" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+  <circle cx="70" cy="135" r="18" fill="#0284c7"/>
+  <text x="70" y="141" class="heading white" text-anchor="middle">1</text>
+  <text x="165" y="140" class="heading" text-anchor="middle">Cache?</text>
+  <text x="165" y="185" class="mono" text-anchor="middle">sys.modules</text>
+  <text x="165" y="220" class="body" text-anchor="middle">Already imported?</text>
+  <text x="165" y="250" class="body" text-anchor="middle">Reuse object.</text>
+
+  <line x1="300" y1="200" x2="340" y2="200" stroke="#64748b" stroke-width="2" marker-end="url(#a)"/>
+
+  <rect x="350" y="100" width="250" height="200" rx="12" fill="#f3e8ff" stroke="#9333ea" stroke-width="2"/>
+  <circle cx="380" cy="135" r="18" fill="#9333ea"/>
+  <text x="380" y="141" class="heading white" text-anchor="middle">2</text>
+  <text x="475" y="140" class="heading" text-anchor="middle">Search path</text>
+  <text x="475" y="185" class="mono" text-anchor="middle">sys.path</text>
+  <text x="475" y="220" class="body" text-anchor="middle">cwd / PYTHONPATH</text>
+  <text x="475" y="250" class="body" text-anchor="middle">site-packages…</text>
+
+  <line x1="610" y1="200" x2="650" y2="200" stroke="#64748b" stroke-width="2" marker-end="url(#a)"/>
+
+  <rect x="660" y="100" width="250" height="200" rx="12" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <circle cx="690" cy="135" r="18" fill="#22c55e"/>
+  <text x="690" y="141" class="heading white" text-anchor="middle">3</text>
+  <text x="785" y="140" class="heading" text-anchor="middle">Load</text>
+  <text x="785" y="185" class="body" text-anchor="middle">Find package dirs</text>
+  <text x="785" y="215" class="body" text-anchor="middle">+ module file</text>
+  <text x="785" y="250" class="mono" text-anchor="middle">service.py</text>
+
+  <line x1="920" y1="200" x2="960" y2="200" stroke="#64748b" stroke-width="2" marker-end="url(#a)"/>
+
+  <rect x="970" y="100" width="170" height="200" rx="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <circle cx="1000" cy="135" r="18" fill="#f59e0b"/>
+  <text x="1000" y="141" class="heading white" text-anchor="middle">4</text>
+  <text x="1055" y="140" class="heading" text-anchor="middle">Bind</text>
+  <text x="1055" y="190" class="body" text-anchor="middle">Run module</text>
+  <text x="1055" y="220" class="body" text-anchor="middle">code once</text>
+  <text x="1055" y="255" class="body" text-anchor="middle">expose names</text>
+
+  <text x="590" y="360" class="body" text-anchor="middle">Editable install puts myapp on the path via site-packages — that is why import myapp works from any cwd.</text>
+  <text x="590" y="390" class="subtitle" text-anchor="middle">Deep path detail: note 02 · module-search-path.svg</text>
+</svg>

@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 460" role="img" aria-labelledby="title desc">
+  <title id="title">Function call creates a frame</title>
+  <desc id="desc">Calling a function pushes a frame with locals; return pops it and delivers a value.</desc>
+  <defs>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; fill: #111827; }
+      .title { font-size: 26px; font-weight: 700; }
+      .subtitle { font-size: 14px; fill: #4b5563; }
+      .heading { font-size: 16px; font-weight: 700; }
+      .body { font-size: 13px; }
+      .mono { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 12px; fill: #be185d; }
+      .small { font-size: 12px; fill: #4b5563; }
+    </style>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <rect width="1180" height="460" fill="#ffffff"/>
+  <text x="590" y="36" class="title" text-anchor="middle">def greet(name): … — call = new frame</text>
+  <text x="590" y="62" class="subtitle" text-anchor="middle">Parameters are local names bound to the argument objects. return hands a reference back.</text>
+
+  <!-- def box -->
+  <rect x="40" y="100" width="320" height="300" rx="12" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+  <text x="200" y="140" class="heading" text-anchor="middle">function object</text>
+  <text x="70" y="185" class="mono">def greet(name):</text>
+  <text x="70" y="215" class="mono">    return f"hi {name}"</text>
+  <text x="70" y="270" class="body">Lives in a namespace</text>
+  <text x="70" y="300" class="body">(module or enclosing scope)</text>
+  <text x="70" y="340" class="small">Code object + defaults + …</text>
+  <text x="70" y="370" class="small">Reusable blueprint for calls</text>
+
+  <line x1="360" y1="220" x2="430" y2="220" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="395" y="200" class="small" text-anchor="middle">call</text>
+
+  <!-- frame -->
+  <rect x="440" y="100" width="340" height="300" rx="12" fill="#eff6ff" stroke="#0284c7" stroke-width="2"/>
+  <text x="610" y="140" class="heading" text-anchor="middle" style="fill:#075985">frame (while running)</text>
+  <rect x="470" y="165" width="280" height="50" rx="8" fill="#ffffff" stroke="#94a3b8"/>
+  <text x="610" y="196" class="mono" text-anchor="middle">name → "ada"</text>
+  <rect x="470" y="230" width="280" height="50" rx="8" fill="#ffffff" stroke="#94a3b8"/>
+  <text x="610" y="261" class="mono" text-anchor="middle">locals / temps …</text>
+  <text x="470" y="320" class="body">Created on call, gone after return</text>
+  <text x="470" y="355" class="body">(unless closure keeps cells)</text>
+
+  <line x1="780" y1="220" x2="850" y2="220" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="815" y="200" class="small" text-anchor="middle">return</text>
+
+  <!-- result -->
+  <rect x="860" y="140" width="280" height="200" rx="12" fill="#ecfdf5" stroke="#22c55e" stroke-width="2"/>
+  <text x="1000" y="185" class="heading" text-anchor="middle" style="fill:#166534">result object</text>
+  <text x="1000" y="230" class="mono" text-anchor="middle">"hi ada"</text>
+  <text x="890" y="280" class="body">Caller binds it if assigned:</text>
+  <text x="890" y="310" class="mono">msg = greet("ada")</text>
+</svg>

@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 520" role="img" aria-labelledby="title desc">
+  <title id="title">Four built-in containers</title>
+  <desc id="desc">List, tuple, set, and dict compared by order, mutability, and uniqueness.</desc>
+  <defs>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; fill: #111827; }
+      .title { font-size: 26px; font-weight: 700; }
+      .subtitle { font-size: 14px; fill: #4b5563; }
+      .heading { font-size: 18px; font-weight: 700; }
+      .body { font-size: 13px; }
+      .mono { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 12px; fill: #be185d; }
+      .tag { font-size: 12px; font-weight: 600; }
+    </style>
+  </defs>
+  <rect width="1180" height="520" fill="#ffffff"/>
+  <text x="590" y="36" class="title" text-anchor="middle">Pick the container by job, not habit</text>
+  <text x="590" y="62" class="subtitle" text-anchor="middle">All four store references to objects. Differ in order, mutability, uniqueness, and lookup cost.</text>
+
+  <!-- list -->
+  <rect x="40" y="100" width="260" height="380" rx="12" fill="#eff6ff" stroke="#0284c7" stroke-width="2"/>
+  <text x="170" y="140" class="heading" text-anchor="middle" style="fill:#075985">list</text>
+  <text x="170" y="170" class="mono" text-anchor="middle">[10, 20, 30]</text>
+  <rect x="60" y="190" width="220" height="36" rx="6" fill="#ffffff" stroke="#94a3b8"/>
+  <text x="170" y="214" class="tag" text-anchor="middle" style="fill:#0369a1">ordered · mutable · dups OK</text>
+  <text x="60" y="260" class="body">• Index access O(1)</text>
+  <text x="60" y="290" class="body">• Grow / shrink in place</text>
+  <text x="60" y="320" class="body">• Membership O(n)</text>
+  <text x="60" y="360" class="body">Use when: sequence you</text>
+  <text x="60" y="385" class="body">change, stack, queue-ish</text>
+  <text x="60" y="430" class="mono">append / pop / slice</text>
+
+  <!-- tuple -->
+  <rect x="320" y="100" width="260" height="380" rx="12" fill="#ecfdf5" stroke="#22c55e" stroke-width="2"/>
+  <text x="450" y="140" class="heading" text-anchor="middle" style="fill:#166534">tuple</text>
+  <text x="450" y="170" class="mono" text-anchor="middle">(3, 4)</text>
+  <rect x="340" y="190" width="220" height="36" rx="6" fill="#ffffff" stroke="#94a3b8"/>
+  <text x="450" y="214" class="tag" text-anchor="middle" style="fill:#15803d">ordered · immutable · dups OK</text>
+  <text x="340" y="260" class="body">• Fixed length slots</text>
+  <text x="340" y="290" class="body">• Hashable if all elements are</text>
+  <text x="340" y="320" class="body">• Slightly cheaper than list</text>
+  <text x="340" y="360" class="body">Use when: records, returns,</text>
+  <text x="340" y="385" class="body">dict keys, “don’t touch”</text>
+  <text x="340" y="430" class="mono">unpacking · *args style</text>
+
+  <!-- set -->
+  <rect x="600" y="100" width="260" height="380" rx="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="730" y="140" class="heading" text-anchor="middle" style="fill:#92400e">set</text>
+  <text x="730" y="170" class="mono" text-anchor="middle">{"a", "b"}</text>
+  <rect x="620" y="190" width="220" height="36" rx="6" fill="#ffffff" stroke="#94a3b8"/>
+  <text x="730" y="214" class="tag" text-anchor="middle" style="fill:#b45309">unordered · mutable · unique</text>
+  <text x="620" y="260" class="body">• Hash-based membership</text>
+  <text x="620" y="290" class="body">• Avg O(1) for in / add</text>
+  <text x="620" y="320" class="body">• No index a[0]</text>
+  <text x="620" y="360" class="body">Use when: uniqueness,</text>
+  <text x="620" y="385" class="body">dedupe, set algebra</text>
+  <text x="620" y="430" class="mono">| &amp; - ^  ·  frozenset</text>
+
+  <!-- dict -->
+  <rect x="880" y="100" width="260" height="380" rx="12" fill="#fdf2f8" stroke="#ec4899" stroke-width="2"/>
+  <text x="1010" y="140" class="heading" text-anchor="middle" style="fill:#9d174d">dict</text>
+  <text x="1010" y="170" class="mono" text-anchor="middle">{"id": 1}</text>
+  <rect x="900" y="190" width="220" height="36" rx="6" fill="#ffffff" stroke="#94a3b8"/>
+  <text x="1010" y="214" class="tag" text-anchor="middle" style="fill:#be185d">keyed · mutable · unique keys</text>
+  <text x="900" y="260" class="body">• Hash table map</text>
+  <text x="900" y="290" class="body">• Avg O(1) get / set</text>
+  <text x="900" y="320" class="body">• Insertion order kept (3.7+)</text>
+  <text x="900" y="360" class="body">Use when: lookups by key,</text>
+  <text x="900" y="385" class="body">JSON-like data, configs</text>
+  <text x="900" y="430" class="mono">get · items · views</text>
+</svg>

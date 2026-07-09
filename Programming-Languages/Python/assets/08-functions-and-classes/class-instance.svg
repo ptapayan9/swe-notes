@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 480" role="img" aria-labelledby="title desc">
+  <title id="title">Class vs instance</title>
+  <desc id="desc">A class is a blueprint object; instances hold per-object attributes and look up methods on the class.</desc>
+  <defs>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; fill: #111827; }
+      .title { font-size: 26px; font-weight: 700; }
+      .subtitle { font-size: 14px; fill: #4b5563; }
+      .heading { font-size: 16px; font-weight: 700; }
+      .body { font-size: 13px; }
+      .mono { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 12px; fill: #be185d; }
+      .small { font-size: 12px; fill: #4b5563; }
+    </style>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <rect width="1180" height="480" fill="#ffffff"/>
+  <text x="590" y="36" class="title" text-anchor="middle">class Dog: … — blueprint + instances</text>
+  <text x="590" y="62" class="subtitle" text-anchor="middle">Class holds methods and shared attributes. Each instance has its own __dict__ of data.</text>
+
+  <!-- class -->
+  <rect x="40" y="100" width="380" height="330" rx="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="230" y="140" class="heading" text-anchor="middle" style="fill:#92400e">class object Dog</text>
+  <text x="70" y="185" class="mono">species = "canis"</text>
+  <text x="70" y="215" class="small">(class attribute — shared)</text>
+  <text x="70" y="260" class="mono">__init__(self, name)</text>
+  <text x="70" y="290" class="mono">bark(self)</text>
+  <text x="70" y="330" class="body">Methods live here once.</text>
+  <text x="70" y="360" class="body">Instances look them up.</text>
+  <text x="70" y="400" class="mono">Dog("rex") → new instance</text>
+
+  <line x1="420" y1="220" x2="500" y2="180" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+  <line x1="420" y1="280" x2="500" y2="340" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="455" y="160" class="small">creates</text>
+
+  <!-- instance 1 -->
+  <rect x="510" y="100" width="300" height="160" rx="12" fill="#eff6ff" stroke="#0284c7" stroke-width="2"/>
+  <text x="660" y="135" class="heading" text-anchor="middle" style="fill:#075985">instance a</text>
+  <text x="540" y="175" class="mono">name = "rex"</text>
+  <text x="540" y="210" class="mono">type → Dog</text>
+  <text x="540" y="240" class="small">a.bark() → Dog.bark(a)</text>
+
+  <!-- instance 2 -->
+  <rect x="510" y="290" width="300" height="140" rx="12" fill="#dbeafe" stroke="#0284c7" stroke-width="2"/>
+  <text x="660" y="325" class="heading" text-anchor="middle" style="fill:#075985">instance b</text>
+  <text x="540" y="365" class="mono">name = "fido"</text>
+  <text x="540" y="400" class="small">own data; same methods</text>
+
+  <!-- callout -->
+  <rect x="850" y="100" width="290" height="330" rx="12" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+  <text x="995" y="140" class="heading" text-anchor="middle">self</text>
+  <text x="880" y="185" class="body">First param of methods</text>
+  <text x="880" y="215" class="body">is the instance. You name</text>
+  <text x="880" y="245" class="body">it self by convention.</text>
+  <text x="880" y="295" class="mono">a.bark()</text>
+  <text x="880" y="325" class="body">desugars to roughly</text>
+  <text x="880" y="355" class="mono">Dog.bark(a)</text>
+  <text x="880" y="400" class="body">Attribute lookup walks</text>
+  <text x="880" y="425" class="body">instance → class → bases</text>
+</svg>

@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 560" role="img" aria-labelledby="title desc">
+  <title id="title">Module vs package map</title>
+  <desc id="desc">A module is a .py file; a package is a directory of modules with dotted names.</desc>
+  <defs>
+    <style>
+      text {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        fill: #111827;
+      }
+      .title { font-size: 30px; font-weight: 700; }
+      .subtitle { font-size: 15px; fill: #4b5563; }
+      .heading { font-size: 18px; font-weight: 700; }
+      .body { font-size: 14px; }
+      .small { font-size: 13px; fill: #4b5563; }
+      .mono {
+        font-family: "SF Mono", Menlo, Consolas, monospace;
+        font-size: 14px;
+        fill: #be185d;
+      }
+    </style>
+  </defs>
+
+  <rect width="1180" height="560" fill="#ffffff"/>
+  <text x="590" y="40" class="title" text-anchor="middle">Module vs package</text>
+  <text x="590" y="68" class="subtitle" text-anchor="middle">Import names are dotted paths. Files and folders map to those names after they are on sys.path.</text>
+
+  <rect x="50" y="100" width="500" height="400" rx="12" fill="#eff6ff" stroke="#0284c7" stroke-width="2"/>
+  <text x="300" y="140" class="heading" text-anchor="middle" style="fill:#075985">Module</text>
+  <text x="80" y="180" class="body">One file Python can import</text>
+  <text x="80" y="220" class="mono">greet.py</text>
+  <text x="80" y="255" class="mono">→ import greet</text>
+  <text x="80" y="300" class="body">After import you get a module</text>
+  <text x="80" y="330" class="body">object with attributes:</text>
+  <text x="80" y="370" class="mono">greet.hello</text>
+  <text x="80" y="400" class="mono">greet.__name__</text>
+  <text x="80" y="430" class="mono">greet.__file__</text>
+  <text x="80" y="470" class="small">Executing the file defines those names.</text>
+
+  <rect x="630" y="100" width="500" height="400" rx="12" fill="#ecfdf5" stroke="#22c55e" stroke-width="2"/>
+  <text x="880" y="140" class="heading" text-anchor="middle" style="fill:#166534">Package</text>
+  <text x="660" y="180" class="body">Directory of modules (namespace)</text>
+  <text x="660" y="220" class="mono">myapp/</text>
+  <text x="680" y="250" class="mono">__init__.py</text>
+  <text x="680" y="280" class="mono">cli.py</text>
+  <text x="680" y="310" class="mono">core/</text>
+  <text x="700" y="340" class="mono">service.py</text>
+  <text x="660" y="390" class="mono">import myapp</text>
+  <text x="660" y="420" class="mono">import myapp.cli</text>
+  <text x="660" y="450" class="mono">import myapp.core.service</text>
+  <text x="660" y="485" class="small">Dotted name = path through packages.</text>
+</svg>

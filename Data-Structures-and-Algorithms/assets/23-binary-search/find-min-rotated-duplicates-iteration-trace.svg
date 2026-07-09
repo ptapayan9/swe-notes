@@ -1,0 +1,141 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="920" viewBox="0 0 1200 920" role="img" aria-labelledby="title desc">
+  <title id="title">LeetCode 154 find minimum in rotated sorted array with duplicates trace</title>
+  <desc id="desc">A binary search trace for nums equals two two two zero one two showing the equal duplicate case, the greater than right case, and the less than right case.</desc>
+  <defs>
+    <style>
+      .title { font: 700 34px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #111827; }
+      .subtitle { font: 600 22px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #374151; }
+      .h { font: 700 20px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #111827; }
+      .body { font: 500 18px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #111827; }
+      .small { font: 500 15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #374151; }
+      .code { font: 700 18px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #111827; }
+      .code-small { font: 700 14px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fill: #111827; }
+      .blue { fill: #1d4ed8; }
+      .orange { fill: #ea580c; }
+      .green { fill: #15803d; }
+      .red { fill: #dc2626; }
+      .muted { fill: #6b7280; }
+      .cell { fill: #ffffff; stroke: #111827; stroke-width: 2; }
+      .removed { fill: #fee2e2; stroke: #b91c1c; stroke-width: 2; }
+      .active { fill: #ecfdf5; stroke: #15803d; stroke-width: 3; }
+      .panel { fill: #ffffff; stroke: #d1d5db; stroke-width: 2; rx: 14; }
+      .rule-blue { fill: #eff6ff; stroke: #2563eb; stroke-width: 2; rx: 12; }
+      .rule-orange { fill: #fff7ed; stroke: #ea580c; stroke-width: 2; rx: 12; }
+      .rule-green { fill: #f0fdf4; stroke: #16a34a; stroke-width: 2; rx: 12; }
+      .note { fill: #fefce8; stroke: #ca8a04; stroke-width: 2; rx: 12; }
+      .arrow { stroke-width: 3; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    </style>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#1d4ed8" />
+    </marker>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#ea580c" />
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#15803d" />
+    </marker>
+  </defs>
+
+  <rect width="1200" height="920" fill="#ffffff" />
+  <text x="600" y="48" text-anchor="middle" class="title">LeetCode 154 - Find Minimum With Duplicates</text>
+  <text x="600" y="82" text-anchor="middle" class="subtitle">Compare <tspan class="code-small">nums[mid]</tspan> with <tspan class="code-small">nums[right]</tspan></text>
+
+  <rect x="40" y="110" width="340" height="112" class="rule-blue" />
+  <text x="62" y="144" class="h blue">1. nums[mid] &gt; nums[right]</text>
+  <text x="62" y="176" class="body">minimum is right of mid</text>
+  <text x="112" y="208" class="code blue">left = mid + 1</text>
+
+  <rect x="430" y="110" width="340" height="112" class="rule-orange" />
+  <text x="452" y="144" class="h orange">2. nums[mid] &lt; nums[right]</text>
+  <text x="452" y="176" class="body">minimum could be mid or left</text>
+  <text x="510" y="208" class="code orange">right = mid</text>
+
+  <rect x="820" y="110" width="340" height="112" class="rule-green" />
+  <text x="842" y="144" class="h green">3. nums[mid] = nums[right]</text>
+  <text x="842" y="176" class="body">duplicate hides the side</text>
+  <text x="900" y="208" class="code green">right -= 1</text>
+
+  <text x="60" y="272" class="h blue">Step 1: equal duplicate case</text>
+  <text x="420" y="272" class="code">nums = [2, 2, 2, 0, 1, 2]</text>
+  <text x="60" y="306" class="small">left = 0, mid = 2, right = 5</text>
+  <g transform="translate(60,326)">
+    <text x="25" y="-12" text-anchor="middle" class="small">0</text>
+    <text x="105" y="-12" text-anchor="middle" class="small">1</text>
+    <text x="185" y="-12" text-anchor="middle" class="small">2</text>
+    <text x="265" y="-12" text-anchor="middle" class="small">3</text>
+    <text x="345" y="-12" text-anchor="middle" class="small">4</text>
+    <text x="425" y="-12" text-anchor="middle" class="small">5</text>
+    <rect x="0" y="0" width="80" height="52" class="cell" /><text x="40" y="34" text-anchor="middle" class="h">2</text>
+    <rect x="80" y="0" width="80" height="52" class="cell" /><text x="120" y="34" text-anchor="middle" class="h">2</text>
+    <rect x="160" y="0" width="80" height="52" class="cell" /><text x="200" y="34" text-anchor="middle" class="h">2</text>
+    <rect x="240" y="0" width="80" height="52" class="cell" /><text x="280" y="34" text-anchor="middle" class="h">0</text>
+    <rect x="320" y="0" width="80" height="52" class="cell" /><text x="360" y="34" text-anchor="middle" class="h">1</text>
+    <rect x="400" y="0" width="80" height="52" class="removed" /><text x="440" y="34" text-anchor="middle" class="h muted">2</text>
+    <path d="M18,78 L62,18" stroke="#dc2626" stroke-width="4" />
+    <path d="M62,78 L18,18" stroke="#dc2626" stroke-width="4" />
+    <path d="M40,92 L40,60" class="arrow" stroke="#1d4ed8" marker-end="url(#arrow-blue)" />
+    <text x="40" y="116" text-anchor="middle" class="code-small blue">left</text>
+    <path d="M200,92 L200,60" class="arrow" stroke="#ea580c" marker-end="url(#arrow-orange)" />
+    <text x="200" y="116" text-anchor="middle" class="code-small orange">mid</text>
+    <path d="M440,92 L440,60" class="arrow" stroke="#15803d" marker-end="url(#arrow-green)" />
+    <text x="440" y="116" text-anchor="middle" class="code-small green">right</text>
+  </g>
+  <rect x="630" y="304" width="510" height="120" class="panel" />
+  <text x="654" y="338" class="code">nums[mid] == nums[right]</text>
+  <text x="654" y="370" class="code">2 == 2  ->  right -= 1</text>
+  <text x="654" y="402" class="body">Safe: the same duplicate value still exists at mid.</text>
+
+  <line x1="40" y1="470" x2="1160" y2="470" stroke="#d1d5db" stroke-width="2" />
+  <text x="60" y="512" class="h blue">Step 2: rotation drop is to the right</text>
+  <text x="60" y="546" class="small">left = 0, mid = 2, right = 4</text>
+  <g transform="translate(60,566)">
+    <text x="25" y="-12" text-anchor="middle" class="small">0</text>
+    <text x="105" y="-12" text-anchor="middle" class="small">1</text>
+    <text x="185" y="-12" text-anchor="middle" class="small">2</text>
+    <text x="265" y="-12" text-anchor="middle" class="small">3</text>
+    <text x="345" y="-12" text-anchor="middle" class="small">4</text>
+    <rect x="0" y="0" width="80" height="52" class="removed" /><text x="40" y="34" text-anchor="middle" class="h muted">2</text>
+    <rect x="80" y="0" width="80" height="52" class="removed" /><text x="120" y="34" text-anchor="middle" class="h muted">2</text>
+    <rect x="160" y="0" width="80" height="52" class="removed" /><text x="200" y="34" text-anchor="middle" class="h muted">2</text>
+    <rect x="240" y="0" width="80" height="52" class="cell" /><text x="280" y="34" text-anchor="middle" class="h">0</text>
+    <rect x="320" y="0" width="80" height="52" class="cell" /><text x="360" y="34" text-anchor="middle" class="h">1</text>
+    <path d="M18,78 L62,18" stroke="#dc2626" stroke-width="4" />
+    <path d="M62,78 L18,18" stroke="#dc2626" stroke-width="4" />
+    <path d="M98,78 L142,18" stroke="#dc2626" stroke-width="4" />
+    <path d="M142,78 L98,18" stroke="#dc2626" stroke-width="4" />
+    <path d="M178,78 L222,18" stroke="#dc2626" stroke-width="4" />
+    <path d="M222,78 L178,18" stroke="#dc2626" stroke-width="4" />
+    <path d="M40,92 L40,60" class="arrow" stroke="#1d4ed8" marker-end="url(#arrow-blue)" />
+    <text x="40" y="116" text-anchor="middle" class="code-small blue">left</text>
+    <path d="M200,92 L200,60" class="arrow" stroke="#ea580c" marker-end="url(#arrow-orange)" />
+    <text x="200" y="116" text-anchor="middle" class="code-small orange">mid</text>
+    <path d="M360,92 L360,60" class="arrow" stroke="#15803d" marker-end="url(#arrow-green)" />
+    <text x="360" y="116" text-anchor="middle" class="code-small green">right</text>
+  </g>
+  <rect x="630" y="540" width="510" height="120" class="panel" />
+  <text x="654" y="574" class="code">nums[mid] &gt; nums[right]</text>
+  <text x="654" y="606" class="code">2 &gt; 1  ->  left = mid + 1</text>
+  <text x="654" y="638" class="body">Minimum must be to the right of mid.</text>
+
+  <line x1="40" y1="710" x2="1160" y2="710" stroke="#d1d5db" stroke-width="2" />
+  <text x="60" y="752" class="h blue">Step 3: keep mid because it might be minimum</text>
+  <text x="60" y="786" class="small">left = 3, mid = 3, right = 4</text>
+  <g transform="translate(60,806)">
+    <text x="25" y="-12" text-anchor="middle" class="small">3</text>
+    <text x="105" y="-12" text-anchor="middle" class="small">4</text>
+    <rect x="0" y="0" width="80" height="52" class="active" /><text x="40" y="34" text-anchor="middle" class="h">0</text>
+    <rect x="80" y="0" width="80" height="52" class="cell" /><text x="120" y="34" text-anchor="middle" class="h">1</text>
+    <path d="M40,92 L40,60" class="arrow" stroke="#1d4ed8" marker-end="url(#arrow-blue)" />
+    <text x="40" y="116" text-anchor="middle" class="code-small blue">left</text>
+    <path d="M40,142 L40,60" class="arrow" stroke="#ea580c" marker-end="url(#arrow-orange)" />
+    <text x="40" y="166" text-anchor="middle" class="code-small orange">mid</text>
+    <path d="M120,92 L120,60" class="arrow" stroke="#15803d" marker-end="url(#arrow-green)" />
+    <text x="120" y="116" text-anchor="middle" class="code-small green">right</text>
+  </g>
+  <rect x="300" y="780" width="370" height="96" class="panel" />
+  <text x="324" y="814" class="code">nums[mid] &lt; nums[right]</text>
+  <text x="324" y="846" class="code">0 &lt; 1  ->  right = mid</text>
+  <rect x="720" y="780" width="360" height="96" class="note" />
+  <text x="744" y="814" class="code">left == right == 3</text>
+  <text x="744" y="846" class="code">return nums[left] = 0</text>
+</svg>

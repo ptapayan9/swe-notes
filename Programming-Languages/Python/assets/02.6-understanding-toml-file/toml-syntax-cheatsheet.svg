@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 420" role="img" aria-labelledby="title desc">
+  <title id="title">TOML syntax used in pyproject.toml</title>
+  <desc id="desc">Minimal TOML grammar: tables, strings, arrays, inline tables, nested tables.</desc>
+  <defs>
+    <style>
+      text {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        fill: #111827;
+      }
+      .title { font-size: 28px; font-weight: 700; }
+      .subtitle { font-size: 14px; fill: #4b5563; }
+      .heading { font-size: 16px; font-weight: 700; }
+      .mono {
+        font-family: "SF Mono", Menlo, Consolas, monospace;
+        font-size: 14px;
+      }
+      .pink { fill: #be185d; }
+      .blue { fill: #075985; }
+      .gray { fill: #4b5563; font-size: 13px; }
+    </style>
+  </defs>
+
+  <rect width="1180" height="420" fill="#ffffff"/>
+  <text x="590" y="38" class="title" text-anchor="middle">TOML you actually need for pyproject.toml</text>
+  <text x="590" y="64" class="subtitle" text-anchor="middle">TOML = Tom's Obvious Minimal Language — tables of keys and values (like a cleaner INI)</text>
+
+  <rect x="40" y="90" width="540" height="290" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="60" y="125" class="heading">Shapes</text>
+  <text x="60" y="160" class="mono pink">[table]</text>
+  <text x="220" y="160" class="gray">section header</text>
+  <text x="60" y="195" class="mono pink">key = "value"</text>
+  <text x="280" y="195" class="gray">string</text>
+  <text x="60" y="230" class="mono pink">list = ["a", "b"]</text>
+  <text x="300" y="230" class="gray">array</text>
+  <text x="60" y="265" class="mono pink">person = {name = "Ada"}</text>
+  <text x="360" y="265" class="gray">inline table</text>
+  <text x="60" y="300" class="mono pink">[project.scripts]</text>
+  <text x="280" y="300" class="gray">nested table</text>
+  <text x="60" y="335" class="mono pink"># comment</text>
+  <text x="220" y="335" class="gray">to end of line</text>
+
+  <rect x="610" y="90" width="530" height="290" rx="12" fill="#eff6ff" stroke="#0284c7" stroke-width="2"/>
+  <text x="630" y="125" class="heading blue">Rules that bite</text>
+  <text x="630" y="165" class="mono">keys = "strings usually"</text>
+  <text x="630" y="200" class="mono">arrays allow multiline</text>
+  <text x="630" y="235" class="mono">dotted keys ≈ nested tables</text>
+  <text x="630" y="270" class="mono">"Bug Tracker" = "https://..."</text>
+  <text x="630" y="300" class="gray">quote keys that contain spaces</text>
+  <text x="630" y="340" class="gray">No trailing commas needed (unlike JSON)</text>
+</svg>

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="220" viewBox="0 0 680 220" font-family="system-ui, -apple-system, sans-serif">
+  <rect x="0" y="0" width="680" height="220" fill="#f8fafc"/>
+
+  <!-- Left panel: left <= right -->
+  <rect x="20" y="30" width="300" height="170" rx="8" fill="#fefce8" stroke="#ca8a04" stroke-width="2"/>
+  <text x="170" y="52" font-size="13" font-weight="700" fill="#713f12" text-anchor="middle">while left &lt;= right</text>
+  <text x="170" y="68" font-size="10" fill="#854d0e" text-anchor="middle">"Remove mid and cross"</text>
+
+  <!-- Steps visual -->
+  <g font-size="11">
+    <text x="45" y="95" fill="#713f12">1. mid = ... checked</text>
+    <text x="45" y="112" fill="#713f12">2. mid + 1  or  mid - 1</text>
+    <text x="45" y="129" fill="#713f12">3. mid is thrown away</text>
+    <text x="45" y="146" fill="#713f12">4. Loop ends when</text>
+    <text x="55" y="161" fill="#854d0e">left &gt; right  (crossed)</text>
+  </g>
+
+  <rect x="200" y="100" width="100" height="55" rx="4" fill="#fef9c3" stroke="#a16207" stroke-width="1"/>
+  <text x="250" y="122" font-size="10" fill="#713f12" text-anchor="middle">left &lt;= right</text>
+  <text x="250" y="138" font-size="10" fill="#713f12" text-anchor="middle">still valid</text>
+
+  <!-- Right panel: left < right -->
+  <rect x="360" y="30" width="300" height="170" rx="8" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+  <text x="510" y="52" font-size="13" font-weight="700" fill="#065f46" text-anchor="middle">while left &lt; right</text>
+  <text x="510" y="68" font-size="10" fill="#047857" text-anchor="middle">"Keep mid, converge to one"</text>
+
+  <g font-size="11">
+    <text x="385" y="95" fill="#065f46">1. mid might be answer</text>
+    <text x="385" y="112" fill="#065f46">2. Often: right = mid</text>
+    <text x="385" y="129" fill="#065f46">3. mid stays in range</text>
+    <text x="385" y="146" fill="#065f46">4. Loop ends when</text>
+    <text x="395" y="161" fill="#047857">left == right</text>
+  </g>
+
+  <rect x="540" y="100" width="100" height="55" rx="4" fill="#d1fae5" stroke="#059669" stroke-width="1"/>
+  <text x="590" y="122" font-size="10" fill="#065f46" text-anchor="middle">left &lt; right</text>
+  <text x="590" y="138" font-size="10" fill="#065f46" text-anchor="middle">shrinking</text>
+
+  <!-- Bottom note -->
+  <text x="340" y="210" font-size="11" fill="#475569" text-anchor="middle">Match the loop style to whether you discard or keep the mid value</text>
+</svg>

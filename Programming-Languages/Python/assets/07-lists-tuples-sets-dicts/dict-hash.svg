@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 480" role="img" aria-labelledby="title desc">
+  <title id="title">Dict hash lookup</title>
+  <desc id="desc">Keys are hashed to find a bucket; values are stored by reference.</desc>
+  <defs>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; fill: #111827; }
+      .title { font-size: 26px; font-weight: 700; }
+      .subtitle { font-size: 14px; fill: #4b5563; }
+      .heading { font-size: 15px; font-weight: 700; }
+      .body { font-size: 13px; }
+      .mono { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 12px; fill: #be185d; }
+      .small { font-size: 12px; fill: #4b5563; }
+    </style>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <rect width="1180" height="480" fill="#ffffff"/>
+  <text x="590" y="36" class="title" text-anchor="middle">user["name"] — hash → slot → value</text>
+  <text x="590" y="62" class="subtitle" text-anchor="middle">Average O(1) lookup. Keys must be hashable (stable hash, equality defined).</text>
+
+  <!-- key -->
+  <rect x="40" y="120" width="200" height="120" rx="12" fill="#fdf2f8" stroke="#ec4899" stroke-width="2"/>
+  <text x="140" y="160" class="heading" text-anchor="middle" style="fill:#9d174d">key</text>
+  <text x="140" y="195" class="mono" text-anchor="middle">"name"</text>
+  <text x="140" y="225" class="small" text-anchor="middle">must be hashable</text>
+
+  <line x1="240" y1="180" x2="300" y2="180" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+  <text x="270" y="165" class="small" text-anchor="middle">hash()</text>
+
+  <!-- hash -->
+  <rect x="310" y="120" width="180" height="120" rx="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="400" y="160" class="heading" text-anchor="middle" style="fill:#92400e">hash code</text>
+  <text x="400" y="195" class="mono" text-anchor="middle">int</text>
+  <text x="400" y="225" class="small" text-anchor="middle">→ table index</text>
+
+  <line x1="490" y1="180" x2="550" y2="180" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- table -->
+  <rect x="560" y="100" width="280" height="300" rx="12" fill="#eff6ff" stroke="#0284c7" stroke-width="2"/>
+  <text x="700" y="135" class="heading" text-anchor="middle" style="fill:#075985">dict table (sketch)</text>
+  <rect x="590" y="160" width="220" height="40" rx="6" fill="#ffffff" stroke="#94a3b8"/>
+  <text x="700" y="186" class="mono" text-anchor="middle" style="font-size:11px">slot … empty …</text>
+  <rect x="590" y="215" width="220" height="50" rx="6" fill="#dbeafe" stroke="#0284c7" stroke-width="2"/>
+  <text x="700" y="238" class="mono" text-anchor="middle" style="font-size:11px">"name" → ref</text>
+  <text x="700" y="256" class="small" text-anchor="middle">match key by ==</text>
+  <rect x="590" y="280" width="220" height="40" rx="6" fill="#ffffff" stroke="#94a3b8"/>
+  <text x="700" y="306" class="mono" text-anchor="middle" style="font-size:11px">"id" → ref</text>
+  <text x="700" y="370" class="small" text-anchor="middle">order of insert preserved (3.7+)</text>
+
+  <line x1="840" y1="240" x2="900" y2="240" stroke="#64748b" stroke-width="2" marker-end="url(#arr)"/>
+
+  <!-- value -->
+  <rect x="910" y="180" width="230" height="120" rx="12" fill="#ecfdf5" stroke="#22c55e" stroke-width="2"/>
+  <text x="1025" y="220" class="heading" text-anchor="middle" style="fill:#166534">value object</text>
+  <text x="1025" y="255" class="mono" text-anchor="middle">"ada"</text>
+  <text x="1025" y="285" class="small" text-anchor="middle">any object (even mutable)</text>
+
+  <text x="40" y="300" class="body">Same idea for set: only keys, no values — uniqueness via hash + equality.</text>
+  <text x="40" y="340" class="body">list / unhashable types cannot be keys. tuple can, if all its elements are hashable.</text>
+  <text x="40" y="400" class="mono">hash("name")  ·  "name" in user  ·  user.get("name", default)</text>
+</svg>

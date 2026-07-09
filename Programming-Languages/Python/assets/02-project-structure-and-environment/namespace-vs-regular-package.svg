@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 520" role="img" aria-labelledby="title desc">
+  <title id="title">Regular package vs namespace package</title>
+  <desc id="desc">Comparison of packages with __init__.py versus PEP 420 namespace packages that can span multiple directories.</desc>
+  <defs>
+    <style>
+      text {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        fill: #111827;
+      }
+      .title { font-size: 30px; font-weight: 700; }
+      .subtitle { font-size: 15px; fill: #4b5563; }
+      .heading { font-size: 18px; font-weight: 700; }
+      .body { font-size: 14px; }
+      .small { font-size: 13px; fill: #4b5563; }
+      .mono {
+        font-family: "SF Mono", Menlo, Consolas, monospace;
+        font-size: 13px;
+      }
+    </style>
+  </defs>
+
+  <rect width="1180" height="520" fill="#ffffff"/>
+  <text x="590" y="40" class="title" text-anchor="middle">Regular package vs namespace package</text>
+  <text x="590" y="68" class="subtitle" text-anchor="middle">Most application code should be a regular package. Namespaces are a special tool for split distributions.</text>
+
+  <!-- Regular -->
+  <rect x="50" y="100" width="520" height="380" rx="12" fill="#ecfdf5" stroke="#22c55e" stroke-width="2"/>
+  <text x="310" y="140" class="heading" text-anchor="middle" style="fill:#166534">Regular package (default)</text>
+  <text x="80" y="180" class="mono">myapp/</text>
+  <text x="100" y="208" class="mono">__init__.py     ← required marker</text>
+  <text x="100" y="236" class="mono">service.py</text>
+  <text x="100" y="264" class="mono">models.py</text>
+
+  <text x="80" y="310" class="body">• One directory owns the package name</text>
+  <text x="80" y="338" class="body">• __init__.py can run package setup</text>
+  <text x="80" y="366" class="body">• Clear boundary for imports and tooling</text>
+  <text x="80" y="394" class="body">• What almost every company app uses</text>
+  <text x="80" y="440" class="small">Empty __init__.py is fine and common.</text>
+
+  <!-- Namespace -->
+  <rect x="610" y="100" width="520" height="380" rx="12" fill="#f5f3ff" stroke="#9333ea" stroke-width="2"/>
+  <text x="870" y="140" class="heading" text-anchor="middle" style="fill:#6d28d9">Namespace package (PEP 420)</text>
+  <text x="640" y="180" class="mono">site-packages/company/</text>
+  <text x="660" y="208" class="mono"># no __init__.py</text>
+  <text x="660" y="236" class="mono">billing/...</text>
+  <text x="640" y="272" class="mono">another-dist/company/</text>
+  <text x="660" y="300" class="mono"># no __init__.py</text>
+  <text x="660" y="328" class="mono">auth/...</text>
+
+  <text x="640" y="372" class="body">• Same top name from multiple install paths</text>
+  <text x="640" y="400" class="body">• No single __init__.py for the top name</text>
+  <text x="640" y="428" class="body">• Useful for plugins / split monorepo packages</text>
+  <text x="640" y="456" class="body">• Easy to misuse; debugging is harder</text>
+</svg>

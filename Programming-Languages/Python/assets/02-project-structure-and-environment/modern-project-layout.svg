@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 720" role="img" aria-labelledby="title desc">
+  <title id="title">Modern Python project layout</title>
+  <desc id="desc">A company-standard src-layout project tree with config, package, tests, and entry points labeled.</desc>
+  <defs>
+    <style>
+      text {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        fill: #111827;
+      }
+      .title { font-size: 32px; font-weight: 700; }
+      .subtitle { font-size: 16px; fill: #4b5563; }
+      .heading { font-size: 18px; font-weight: 700; }
+      .body { font-size: 15px; }
+      .mono {
+        font-family: "SF Mono", Menlo, Consolas, monospace;
+        font-size: 14px;
+        fill: #111827;
+      }
+      .mono-sm {
+        font-family: "SF Mono", Menlo, Consolas, monospace;
+        font-size: 13px;
+        fill: #374151;
+      }
+      .label { font-size: 13px; fill: #4b5563; }
+      .blue-text { fill: #075985; }
+      .green-text { fill: #166534; }
+      .purple-text { fill: #6d28d9; }
+      .orange-text { fill: #9a3412; }
+      .pink-text { fill: #9d174d; }
+    </style>
+  </defs>
+
+  <rect width="1180" height="720" fill="#ffffff"/>
+  <text x="590" y="42" class="title" text-anchor="middle">Modern Python Project (src layout)</text>
+  <text x="590" y="68" class="subtitle" text-anchor="middle">Config at the root · installable package under src/ · tests outside the package</text>
+
+  <!-- Tree card -->
+  <rect x="40" y="96" width="520" height="580" rx="12" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+  <text x="60" y="128" class="heading">myapp/</text>
+
+  <text x="80" y="164" class="mono">pyproject.toml</text>
+  <text x="300" y="164" class="label orange-text">deps, tools, package metadata</text>
+
+  <text x="80" y="194" class="mono">README.md</text>
+  <text x="300" y="194" class="label">how to install and run</text>
+
+  <text x="80" y="224" class="mono">.python-version</text>
+  <text x="300" y="224" class="label">pin the interpreter (pyenv/uv)</text>
+
+  <text x="80" y="254" class="mono green-text">src/</text>
+  <text x="300" y="254" class="label green-text">only installable code lives here</text>
+
+  <text x="100" y="284" class="mono green-text">myapp/</text>
+  <text x="300" y="284" class="label green-text">the package name (import myapp)</text>
+
+  <text x="120" y="314" class="mono-sm">__init__.py</text>
+  <text x="300" y="314" class="label">marks a regular package</text>
+
+  <text x="120" y="344" class="mono-sm">__main__.py</text>
+  <text x="300" y="344" class="label purple-text">python -m myapp entry</text>
+
+  <text x="120" y="374" class="mono-sm">cli.py</text>
+  <text x="300" y="374" class="label">console script target</text>
+
+  <text x="120" y="404" class="mono-sm">core/</text>
+  <text x="300" y="404" class="label">domain logic modules</text>
+
+  <text x="140" y="434" class="mono-sm">__init__.py</text>
+  <text x="140" y="464" class="mono-sm">service.py</text>
+  <text x="140" y="494" class="mono-sm">models.py</text>
+
+  <text x="80" y="534" class="mono blue-text">tests/</text>
+  <text x="300" y="534" class="label blue-text">mirrors package layout</text>
+
+  <text x="100" y="564" class="mono-sm">conftest.py</text>
+  <text x="300" y="564" class="label">shared fixtures</text>
+
+  <text x="100" y="594" class="mono-sm">unit/test_service.py</text>
+  <text x="100" y="624" class="mono-sm">integration/test_api.py</text>
+  <text x="80" y="654" class="mono-sm">.gitignore  ·  LICENSE  ·  .github/</text>
+
+  <!-- Right side principles -->
+  <rect x="600" y="96" width="540" height="130" rx="12" fill="#ecfdf5" stroke="#22c55e" stroke-width="2"/>
+  <text x="870" y="132" class="heading green-text" text-anchor="middle">Why src/ layout?</text>
+  <text x="630" y="166" class="body">Tests import the installed package, not a random</text>
+  <text x="630" y="190" class="body">folder on disk. Local edits only win after install</text>
+  <text x="630" y="214" class="body">(editable: pip install -e .). Fewer import surprises.</text>
+
+  <rect x="600" y="246" width="540" height="130" rx="12" fill="#eff6ff" stroke="#0284c7" stroke-width="2"/>
+  <text x="870" y="282" class="heading blue-text" text-anchor="middle">Root = project, not package</text>
+  <text x="630" y="316" class="body">Config, CI, docs, and tests sit next to the package,</text>
+  <text x="630" y="340" class="body">not inside it. Shipping code stays small and clean.</text>
+  <text x="630" y="364" class="body">Package name and repo name can differ safely.</text>
+
+  <rect x="600" y="396" width="540" height="130" rx="12" fill="#f5f3ff" stroke="#9333ea" stroke-width="2"/>
+  <text x="870" y="432" class="heading purple-text" text-anchor="middle">One clear entry surface</text>
+  <text x="630" y="466" class="body">__main__.py → python -m myapp</text>
+  <text x="630" y="490" class="body">[project.scripts] → myapp CLI after install</text>
+  <text x="630" y="514" class="body">Avoid scattering runnable scripts at the repo root.</text>
+
+  <rect x="600" y="546" width="540" height="130" rx="12" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+  <text x="870" y="582" class="heading orange-text" text-anchor="middle">Company default mindset</text>
+  <text x="630" y="616" class="body">Reproducible env · pyproject.toml as source of truth</text>
+  <text x="630" y="640" class="body">Editable install for dev · tests run via pytest</text>
+  <text x="630" y="664" class="body">No PYTHONPATH hacks in docs or CI if avoidable</text>
+</svg>

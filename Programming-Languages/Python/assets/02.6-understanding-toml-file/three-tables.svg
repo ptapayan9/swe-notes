@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 520" role="img" aria-labelledby="title desc">
+  <title id="title">Three tables in pyproject.toml</title>
+  <desc id="desc">The standardized tables: build-system, project, and tool, with who reads each.</desc>
+  <defs>
+    <style>
+      text {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        fill: #111827;
+      }
+      .title { font-size: 30px; font-weight: 700; }
+      .subtitle { font-size: 15px; fill: #4b5563; }
+      .heading { font-size: 18px; font-weight: 700; }
+      .body { font-size: 14px; }
+      .small { font-size: 13px; fill: #4b5563; }
+      .mono {
+        font-family: "SF Mono", Menlo, Consolas, monospace;
+        font-size: 13px;
+        fill: #be185d;
+      }
+    </style>
+  </defs>
+
+  <rect width="1180" height="520" fill="#ffffff"/>
+  <text x="590" y="40" class="title" text-anchor="middle">pyproject.toml — three standard tables</text>
+  <text x="590" y="68" class="subtitle" text-anchor="middle">Official PyPA shape: how to build · what the project is · tool-specific knobs</text>
+
+  <rect x="40" y="100" width="350" height="360" rx="12" fill="#ecfdf5" stroke="#22c55e" stroke-width="2"/>
+  <text x="215" y="140" class="heading" text-anchor="middle" style="fill:#166534">[build-system]</text>
+  <text x="60" y="180" class="body">Who builds the wheel/sdist?</text>
+  <text x="60" y="210" class="mono">requires = [...]</text>
+  <text x="60" y="235" class="mono">build-backend = "..."</text>
+  <text x="60" y="280" class="body">Read by: pip, build, uv</text>
+  <text x="60" y="310" class="body">when installing/building</text>
+  <text x="60" y="350" class="small">Strongly recommended.</text>
+  <text x="60" y="375" class="small">Defines the build backend</text>
+  <text x="60" y="400" class="small">(hatchling, setuptools…).</text>
+  <text x="60" y="430" class="small">Not your app runtime deps.</text>
+
+  <rect x="415" y="100" width="350" height="360" rx="12" fill="#eff6ff" stroke="#0284c7" stroke-width="2"/>
+  <text x="590" y="140" class="heading" text-anchor="middle" style="fill:#075985">[project]</text>
+  <text x="435" y="180" class="body">What is this project?</text>
+  <text x="435" y="210" class="mono">name, version</text>
+  <text x="435" y="235" class="mono">dependencies</text>
+  <text x="435" y="260" class="mono">requires-python</text>
+  <text x="435" y="285" class="mono">scripts, urls…</text>
+  <text x="435" y="330" class="body">Read by: build backends</text>
+  <text x="435" y="360" class="body">+ installers (PEP 621)</text>
+  <text x="435" y="400" class="small">Required static field: name</text>
+  <text x="435" y="425" class="small">version: static or dynamic</text>
+  <text x="435" y="450" class="small">Most backends use this table.</text>
+
+  <rect x="790" y="100" width="350" height="360" rx="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="965" y="140" class="heading" text-anchor="middle" style="fill:#92400e">[tool.*]</text>
+  <text x="810" y="180" class="body">Per-tool config</text>
+  <text x="810" y="210" class="mono">[tool.ruff]</text>
+  <text x="810" y="235" class="mono">[tool.pytest.ini_options]</text>
+  <text x="810" y="260" class="mono">[tool.mypy]</text>
+  <text x="810" y="285" class="mono">[tool.hatch.build...]</text>
+  <text x="810" y="330" class="body">Read by: each tool when</text>
+  <text x="810" y="360" class="body">you run that tool</text>
+  <text x="810" y="400" class="small">Not a packaging PEP field.</text>
+  <text x="810" y="425" class="small">Namespace: tool.$PyPI_name</text>
+  <text x="810" y="450" class="small">Backend layout often lives here.</text>
+</svg>

@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 860" role="img" aria-labelledby="title desc">
+  <title id="title">Python roadmap overview</title>
+  <desc id="desc">A compact visual summary of the Python roadmap lanes: basics, algorithms, language features, packaging, frameworks, concurrency, typing, quality tools, and production practice.</desc>
+  <defs>
+    <style>
+      text {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        fill: #111827;
+      }
+      .title { font-size: 36px; font-weight: 700; }
+      .subtitle { font-size: 18px; fill: #4b5563; }
+      .lane-title { font-size: 20px; font-weight: 700; }
+      .item { font-size: 15px; fill: #374151; }
+      .small { font-size: 14px; fill: #4b5563; }
+      .card { fill: #ffffff; stroke: #d1d5db; stroke-width: 1.5; }
+      .yellow { fill: #fef3c7; stroke: #f59e0b; }
+      .blue { fill: #e0f2fe; stroke: #0284c7; }
+      .green { fill: #dcfce7; stroke: #22c55e; }
+      .purple { fill: #f3e8ff; stroke: #9333ea; }
+      .pink { fill: #fce7f3; stroke: #db2777; }
+      .orange { fill: #ffedd5; stroke: #ea580c; }
+      .slate { fill: #f8fafc; stroke: #64748b; }
+    </style>
+  </defs>
+
+  <rect width="1180" height="860" fill="#ffffff"/>
+  <text x="590" y="50" class="title" text-anchor="middle">Python Roadmap</text>
+  <text x="590" y="80" class="subtitle" text-anchor="middle">Use the official Roadmap.sh path as a checklist, then prove each lane with projects.</text>
+
+  <rect x="450" y="112" width="280" height="64" rx="8" class="yellow"/>
+  <text x="590" y="151" class="lane-title" text-anchor="middle">Learn the Basics</text>
+
+  <line x1="590" y1="176" x2="590" y2="214" stroke="#9ca3af" stroke-width="2"/>
+
+  <rect x="52" y="214" width="246" height="188" rx="8" class="card"/>
+  <text x="175" y="244" class="lane-title" text-anchor="middle">Basics</text>
+  <text x="75" y="276" class="item">Syntax, variables, types</text>
+  <text x="75" y="302" class="item">Conditionals and loops</text>
+  <text x="75" y="328" class="item">Type casting and exceptions</text>
+  <text x="75" y="354" class="item">Functions and built-ins</text>
+  <text x="75" y="380" class="item">Lists, tuples, sets, dicts</text>
+
+  <rect x="324" y="214" width="246" height="188" rx="8" class="card"/>
+  <text x="447" y="244" class="lane-title" text-anchor="middle">Algorithms</text>
+  <text x="347" y="276" class="item">Arrays and linked lists</text>
+  <text x="347" y="302" class="item">Hash tables</text>
+  <text x="347" y="328" class="item">Heaps, stacks, queues</text>
+  <text x="347" y="354" class="item">Binary search trees</text>
+  <text x="347" y="380" class="item">Recursion and sorting</text>
+
+  <rect x="596" y="214" width="246" height="188" rx="8" class="card"/>
+  <text x="719" y="244" class="lane-title" text-anchor="middle">Python Features</text>
+  <text x="619" y="276" class="item">Modules, lambdas</text>
+  <text x="619" y="302" class="item">Decorators and iterators</text>
+  <text x="619" y="328" class="item">Regular expressions</text>
+  <text x="619" y="354" class="item">OOP and dunder methods</text>
+  <text x="619" y="380" class="item">Comprehensions, generators</text>
+
+  <rect x="868" y="214" width="246" height="188" rx="8" class="card"/>
+  <text x="991" y="244" class="lane-title" text-anchor="middle">Packaging</text>
+  <text x="891" y="276" class="item">PyPI, pip, uv</text>
+  <text x="891" y="302" class="item">Conda and Poetry</text>
+  <text x="891" y="328" class="item">pyproject.toml</text>
+  <text x="891" y="354" class="item">Pipenv, virtualenv, pyenv</text>
+  <text x="891" y="380" class="item">Project configuration</text>
+
+  <line x1="175" y1="402" x2="175" y2="442" stroke="#9ca3af" stroke-width="2"/>
+  <line x1="447" y1="402" x2="447" y2="442" stroke="#9ca3af" stroke-width="2"/>
+  <line x1="719" y1="402" x2="719" y2="442" stroke="#9ca3af" stroke-width="2"/>
+  <line x1="991" y1="402" x2="991" y2="442" stroke="#9ca3af" stroke-width="2"/>
+
+  <rect x="52" y="442" width="246" height="162" rx="8" class="blue"/>
+  <text x="175" y="472" class="lane-title" text-anchor="middle">Frameworks</text>
+  <text x="75" y="504" class="item">Pyramid, Plotly Dash</text>
+  <text x="75" y="530" class="item">gevent, aiohttp</text>
+  <text x="75" y="556" class="item">Tornado, Sanic</text>
+  <text x="75" y="582" class="item">FastAPI, Django, Flask</text>
+
+  <rect x="324" y="442" width="246" height="162" rx="8" class="green"/>
+  <text x="447" y="472" class="lane-title" text-anchor="middle">Concurrency</text>
+  <text x="347" y="504" class="item">GIL</text>
+  <text x="347" y="530" class="item">Threading</text>
+  <text x="347" y="556" class="item">Multiprocessing</text>
+  <text x="347" y="582" class="item">Asynchrony</text>
+
+  <rect x="596" y="442" width="246" height="162" rx="8" class="purple"/>
+  <text x="719" y="472" class="lane-title" text-anchor="middle">Static Typing</text>
+  <text x="619" y="504" class="item">typing</text>
+  <text x="619" y="530" class="item">mypy and pyright</text>
+  <text x="619" y="556" class="item">pyre</text>
+  <text x="619" y="582" class="item">Pydantic</text>
+
+  <rect x="868" y="442" width="246" height="162" rx="8" class="pink"/>
+  <text x="991" y="472" class="lane-title" text-anchor="middle">Quality Tools</text>
+  <text x="891" y="504" class="item">ruff, black, yapf</text>
+  <text x="891" y="530" class="item">Sphinx documentation</text>
+  <text x="891" y="556" class="item">pytest and unittest</text>
+  <text x="891" y="582" class="item">doctest, nose, tox</text>
+
+  <rect x="270" y="666" width="640" height="88" rx="8" class="orange"/>
+  <text x="590" y="700" class="lane-title" text-anchor="middle">Production Practice</text>
+  <text x="590" y="730" class="item" text-anchor="middle">CI, repeatable environments, packaging, deployment, logging, configuration, observability</text>
+
+  <line x1="175" y1="604" x2="405" y2="666" stroke="#9ca3af" stroke-width="2"/>
+  <line x1="447" y1="604" x2="500" y2="666" stroke="#9ca3af" stroke-width="2"/>
+  <line x1="719" y1="604" x2="680" y2="666" stroke="#9ca3af" stroke-width="2"/>
+  <line x1="991" y1="604" x2="775" y2="666" stroke="#9ca3af" stroke-width="2"/>
+
+  <rect x="170" y="790" width="840" height="42" rx="8" class="slate"/>
+  <text x="590" y="817" class="small" text-anchor="middle">Study loop: learn a topic, build something small, add tests and typing, then revisit gaps.</text>
+</svg>

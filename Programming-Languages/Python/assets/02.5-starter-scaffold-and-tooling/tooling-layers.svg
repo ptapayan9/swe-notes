@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 560" role="img" aria-labelledby="title desc">
+  <title id="title">Tooling layers in pyproject.toml</title>
+  <desc id="desc">What each config block owns: packaging, lint/format, types, tests, and optional CI glue.</desc>
+  <defs>
+    <style>
+      text {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        fill: #111827;
+      }
+      .title { font-size: 30px; font-weight: 700; }
+      .subtitle { font-size: 15px; fill: #4b5563; }
+      .heading { font-size: 17px; font-weight: 700; }
+      .body { font-size: 14px; }
+      .small { font-size: 13px; fill: #4b5563; }
+      .mono {
+        font-family: "SF Mono", Menlo, Consolas, monospace;
+        font-size: 13px;
+        fill: #be185d;
+      }
+    </style>
+  </defs>
+
+  <rect width="1180" height="560" fill="#ffffff"/>
+  <text x="590" y="40" class="title" text-anchor="middle">One file owns the project: pyproject.toml</text>
+  <text x="590" y="68" class="subtitle" text-anchor="middle">Packaging metadata + tool settings live together. Teammates and CI read the same source of truth.</text>
+
+  <rect x="50" y="100" width="260" height="180" rx="12" fill="#ecfdf5" stroke="#22c55e" stroke-width="2"/>
+  <text x="180" y="140" class="heading" text-anchor="middle" style="fill:#166534">[project]</text>
+  <text x="70" y="175" class="body">name, version, deps</text>
+  <text x="70" y="200" class="body">requires-python</text>
+  <text x="70" y="225" class="mono">[project.scripts]</text>
+  <text x="70" y="250" class="small">what you ship / install</text>
+
+  <rect x="340" y="100" width="260" height="180" rx="12" fill="#eff6ff" stroke="#0284c7" stroke-width="2"/>
+  <text x="470" y="140" class="heading" text-anchor="middle" style="fill:#075985">[build-system]</text>
+  <text x="360" y="175" class="body">hatchling / setuptools</text>
+  <text x="360" y="200" class="body">how the wheel is built</text>
+  <text x="360" y="225" class="mono">packages = src/...</text>
+  <text x="360" y="250" class="small">src layout wiring</text>
+
+  <rect x="630" y="100" width="240" height="180" rx="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="750" y="140" class="heading" text-anchor="middle" style="fill:#92400e">[tool.ruff]</text>
+  <text x="650" y="175" class="body">lint + format</text>
+  <text x="650" y="200" class="body">line length, rules</text>
+  <text x="650" y="225" class="mono">ruff check · format</text>
+  <text x="650" y="250" class="small">fast default at work</text>
+
+  <rect x="900" y="100" width="240" height="180" rx="12" fill="#f3e8ff" stroke="#9333ea" stroke-width="2"/>
+  <text x="1020" y="140" class="heading" text-anchor="middle" style="fill:#6d28d9">[tool.pytest]</text>
+  <text x="920" y="175" class="body">testpaths, markers</text>
+  <text x="920" y="200" class="body">addopts defaults</text>
+  <text x="920" y="225" class="mono">pytest</text>
+  <text x="920" y="250" class="small">discovery from root</text>
+
+  <rect x="50" y="320" width="350" height="180" rx="12" fill="#fce7f3" stroke="#db2777" stroke-width="2"/>
+  <text x="225" y="360" class="heading" text-anchor="middle" style="fill:#9d174d">[tool.mypy] / pyright</text>
+  <text x="70" y="395" class="body">static types on interfaces</text>
+  <text x="70" y="420" class="body">strictness dial per team</text>
+  <text x="70" y="445" class="mono">mypy src · pyright</text>
+  <text x="70" y="470" class="small">catch bad calls before runtime</text>
+
+  <rect x="430" y="320" width="350" height="180" rx="12" fill="#ffedd5" stroke="#ea580c" stroke-width="2"/>
+  <text x="605" y="360" class="heading" text-anchor="middle" style="fill:#9a3412">optional-dependencies</text>
+  <text x="450" y="395" class="body">dev = pytest, ruff, mypy</text>
+  <text x="450" y="420" class="body">prod install stays lean</text>
+  <text x="450" y="445" class="mono">pip install -e ".[dev]"</text>
+  <text x="450" y="470" class="small">CI uses the same extra</text>
+
+  <rect x="810" y="320" width="330" height="180" rx="12" fill="#f8fafc" stroke="#64748b" stroke-width="2"/>
+  <text x="975" y="360" class="heading" text-anchor="middle">Outside the file</text>
+  <text x="830" y="395" class="body">.python-version → pin CPython</text>
+  <text x="830" y="420" class="body">.gitignore → drop .venv, dist</text>
+  <text x="830" y="445" class="body">README → one install + run path</text>
+  <text x="830" y="470" class="body">CI yaml → same shell commands</text>
+</svg>

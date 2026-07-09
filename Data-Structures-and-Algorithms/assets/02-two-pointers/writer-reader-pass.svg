@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 560" role="img" aria-labelledby="title desc">
+  <title id="title">Writer reader pass for in-place deduplication</title>
+  <desc id="desc">Three rows show writer as the next write slot and reader as the scanning pointer while removing duplicates from a sorted array.</desc>
+  <defs>
+    <style>
+      text {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        fill: #111827;
+      }
+      .title { font-size: 32px; font-weight: 700; }
+      .label { font-size: 22px; font-weight: 700; }
+      .small { font-size: 18px; fill: #4b5563; }
+      .decision { font-size: 20px; fill: #075985; font-weight: 700; }
+      .mono {
+        font-family: "SF Mono", Menlo, Consolas, monospace;
+        font-size: 22px;
+        fill: #be185d;
+      }
+      .writer { fill: #7c3aed; }
+      .reader { fill: #0284c7; }
+      .ok { fill: #15803d; }
+      .ghost { fill: #9ca3af; }
+    </style>
+  </defs>
+
+  <rect width="1120" height="560" fill="#ffffff"/>
+  <text x="560" y="48" class="title" text-anchor="middle">Same Direction: Writer / Reader</text>
+  <text x="560" y="78" class="small" text-anchor="middle">writer is the next write slot; reader scans the input once</text>
+
+  <text x="90" y="128" class="label">Start</text>
+  <rect x="210" y="104" width="78" height="60" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <rect x="302" y="104" width="78" height="60" rx="8" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+  <rect x="394" y="104" width="78" height="60" rx="8" fill="#f8fafc" stroke="#e5e7eb" stroke-width="2"/>
+  <rect x="486" y="104" width="78" height="60" rx="8" fill="#f8fafc" stroke="#e5e7eb" stroke-width="2"/>
+  <rect x="578" y="104" width="78" height="60" rx="8" fill="#f8fafc" stroke="#e5e7eb" stroke-width="2"/>
+  <rect x="670" y="104" width="78" height="60" rx="8" fill="#f8fafc" stroke="#e5e7eb" stroke-width="2"/>
+  <text x="249" y="142" class="mono" text-anchor="middle">1</text>
+  <text x="341" y="142" class="mono" text-anchor="middle">1</text>
+  <text x="433" y="142" class="mono" text-anchor="middle">2</text>
+  <text x="525" y="142" class="mono" text-anchor="middle">3</text>
+  <text x="617" y="142" class="mono" text-anchor="middle">3</text>
+  <text x="709" y="142" class="mono" text-anchor="middle">4</text>
+  <text x="341" y="190" class="label writer" text-anchor="middle">W=1</text>
+  <text x="341" y="216" class="label reader" text-anchor="middle">R=1</text>
+  <text x="825" y="130" class="decision">first value is already kept</text>
+  <text x="825" y="158" class="small">compare reader to last kept value</text>
+
+  <line x1="70" y1="242" x2="1050" y2="242" stroke="#e5e7eb" stroke-width="1.5"/>
+
+  <text x="90" y="292" class="label">Mid-pass</text>
+  <rect x="210" y="268" width="78" height="60" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <rect x="302" y="268" width="78" height="60" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <rect x="394" y="268" width="78" height="60" rx="8" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <rect x="486" y="268" width="78" height="60" rx="8" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+  <rect x="578" y="268" width="78" height="60" rx="8" fill="#f8fafc" stroke="#e5e7eb" stroke-width="2"/>
+  <rect x="670" y="268" width="78" height="60" rx="8" fill="#f8fafc" stroke="#e5e7eb" stroke-width="2"/>
+  <text x="249" y="306" class="mono" text-anchor="middle">1</text>
+  <text x="341" y="306" class="mono" text-anchor="middle">2</text>
+  <text x="433" y="306" class="mono ghost" text-anchor="middle">·</text>
+  <text x="525" y="306" class="mono" text-anchor="middle">3</text>
+  <text x="617" y="306" class="mono" text-anchor="middle">3</text>
+  <text x="709" y="306" class="mono" text-anchor="middle">4</text>
+  <text x="433" y="354" class="label writer" text-anchor="middle">W=2</text>
+  <text x="525" y="354" class="label reader" text-anchor="middle">R=3</text>
+  <text x="825" y="292" class="decision">3 != nums[W - 1]</text>
+  <text x="825" y="320" class="small">write 3 into W, then advance both</text>
+
+  <line x1="70" y1="386" x2="1050" y2="386" stroke="#e5e7eb" stroke-width="1.5"/>
+
+  <text x="90" y="436" class="label">After</text>
+  <rect x="210" y="412" width="78" height="60" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <rect x="302" y="412" width="78" height="60" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <rect x="394" y="412" width="78" height="60" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <rect x="486" y="412" width="78" height="60" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <rect x="578" y="412" width="78" height="60" rx="8" fill="#f3f4f6" stroke="#d1d5db" stroke-width="1" opacity="0.6"/>
+  <rect x="670" y="412" width="78" height="60" rx="8" fill="#f3f4f6" stroke="#d1d5db" stroke-width="1" opacity="0.6"/>
+  <text x="249" y="450" class="mono" text-anchor="middle">1</text>
+  <text x="341" y="450" class="mono" text-anchor="middle">2</text>
+  <text x="433" y="450" class="mono" text-anchor="middle">3</text>
+  <text x="525" y="450" class="mono" text-anchor="middle">4</text>
+  <text x="617" y="450" class="mono ghost" text-anchor="middle">·</text>
+  <text x="709" y="450" class="mono ghost" text-anchor="middle">·</text>
+  <path d="M210 492 H564 M210 484 V500 M564 484 V500" fill="none" stroke="#16a34a" stroke-width="2"/>
+  <text x="387" y="526" class="label ok" text-anchor="middle">return writer = 4</text>
+  <text x="825" y="436" class="decision">prefix before W is valid</text>
+  <text x="825" y="464" class="small">ignore or overwrite the suffix</text>
+</svg>

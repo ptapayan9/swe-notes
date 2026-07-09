@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 620" role="img" aria-labelledby="title desc">
+  <title id="title">Opposite-ends pointers converging on a sorted array</title>
+  <desc id="desc">Three rows show left and right pointers moving on a sorted array until the values 4 and 11 sum to target 15.</desc>
+  <defs>
+    <marker id="arrow-green" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <path d="M0,0 L0,8 L8,4 z" fill="#16a34a"/>
+    </marker>
+    <marker id="arrow-red" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto">
+      <path d="M0,0 L0,8 L8,4 z" fill="#dc2626"/>
+    </marker>
+    <style>
+      text {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        fill: #111827;
+      }
+      .title { font-size: 32px; font-weight: 700; }
+      .label { font-size: 22px; font-weight: 700; }
+      .small { font-size: 18px; fill: #4b5563; }
+      .decision { font-size: 20px; fill: #075985; font-weight: 700; }
+      .found { font-size: 20px; fill: #15803d; font-weight: 700; }
+      .mono {
+        font-family: "SF Mono", Menlo, Consolas, monospace;
+        font-size: 22px;
+        fill: #be185d;
+      }
+      .ghost { fill: #9ca3af; }
+      .left { fill: #16a34a; }
+      .right { fill: #dc2626; }
+    </style>
+  </defs>
+
+  <rect width="1120" height="620" fill="#ffffff"/>
+  <text x="560" y="48" class="title" text-anchor="middle">Opposite Ends: Sorted Pair Sum</text>
+  <text x="560" y="78" class="small" text-anchor="middle">target = 15; move the side that cannot still make the target</text>
+
+  <text x="92" y="126" class="label">Step 1</text>
+  <rect x="200" y="102" width="78" height="62" rx="8" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+  <rect x="292" y="102" width="78" height="62" rx="8" fill="#f8fafc" stroke="#e5e7eb" stroke-width="2"/>
+  <rect x="384" y="102" width="78" height="62" rx="8" fill="#f8fafc" stroke="#e5e7eb" stroke-width="2"/>
+  <rect x="476" y="102" width="78" height="62" rx="8" fill="#f8fafc" stroke="#e5e7eb" stroke-width="2"/>
+  <rect x="568" y="102" width="78" height="62" rx="8" fill="#f8fafc" stroke="#e5e7eb" stroke-width="2"/>
+  <rect x="660" y="102" width="78" height="62" rx="8" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+  <text x="239" y="141" class="mono" text-anchor="middle">2</text>
+  <text x="331" y="141" class="mono" text-anchor="middle">4</text>
+  <text x="423" y="141" class="mono" text-anchor="middle">6</text>
+  <text x="515" y="141" class="mono" text-anchor="middle">9</text>
+  <text x="607" y="141" class="mono" text-anchor="middle">11</text>
+  <text x="699" y="141" class="mono" text-anchor="middle">15</text>
+  <text x="239" y="190" class="label left" text-anchor="middle">L</text>
+  <line x1="239" y1="184" x2="239" y2="168" stroke="#16a34a" stroke-width="3" marker-end="url(#arrow-green)"/>
+  <text x="699" y="190" class="label right" text-anchor="middle">R</text>
+  <line x1="699" y1="184" x2="699" y2="168" stroke="#dc2626" stroke-width="3" marker-end="url(#arrow-red)"/>
+  <text x="815" y="125" class="mono">2 + 15 = 17</text>
+  <text x="815" y="155" class="decision">too large: move R left</text>
+
+  <line x1="70" y1="220" x2="1050" y2="220" stroke="#e5e7eb" stroke-width="1.5"/>
+
+  <text x="92" y="276" class="label">Step 2</text>
+  <rect x="200" y="252" width="78" height="62" rx="8" fill="#e0f2fe" stroke="#0284c7" stroke-width="2"/>
+  <rect x="292" y="252" width="78" height="62" rx="8" fill="#f8fafc" stroke="#e5e7eb" stroke-width="2"/>
+  <rect x="384" y="252" width="78" height="62" rx="8" fill="#f8fafc" stroke="#e5e7eb" stroke-width="2"/>
+  <rect x="476" y="252" width="78" height="62" rx="8" fill="#f8fafc" stroke="#e5e7eb" stroke-width="2"/>
+  <rect x="568" y="252" width="78" height="62" rx="8" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+  <rect x="660" y="252" width="78" height="62" rx="8" fill="#f3f4f6" stroke="#d1d5db" stroke-width="1" opacity="0.55"/>
+  <text x="239" y="291" class="mono" text-anchor="middle">2</text>
+  <text x="331" y="291" class="mono" text-anchor="middle">4</text>
+  <text x="423" y="291" class="mono" text-anchor="middle">6</text>
+  <text x="515" y="291" class="mono" text-anchor="middle">9</text>
+  <text x="607" y="291" class="mono" text-anchor="middle">11</text>
+  <text x="699" y="291" class="mono ghost" text-anchor="middle">15</text>
+  <text x="239" y="340" class="label left" text-anchor="middle">L</text>
+  <line x1="239" y1="334" x2="239" y2="318" stroke="#16a34a" stroke-width="3" marker-end="url(#arrow-green)"/>
+  <text x="607" y="340" class="label right" text-anchor="middle">R</text>
+  <line x1="607" y1="334" x2="607" y2="318" stroke="#dc2626" stroke-width="3" marker-end="url(#arrow-red)"/>
+  <text x="815" y="275" class="mono">2 + 11 = 13</text>
+  <text x="815" y="305" class="decision">too small: move L right</text>
+
+  <line x1="70" y1="370" x2="1050" y2="370" stroke="#e5e7eb" stroke-width="1.5"/>
+
+  <text x="92" y="426" class="label">Step 3</text>
+  <rect x="200" y="402" width="78" height="62" rx="8" fill="#f3f4f6" stroke="#d1d5db" stroke-width="1" opacity="0.55"/>
+  <rect x="292" y="402" width="78" height="62" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <rect x="384" y="402" width="78" height="62" rx="8" fill="#f8fafc" stroke="#e5e7eb" stroke-width="2"/>
+  <rect x="476" y="402" width="78" height="62" rx="8" fill="#f8fafc" stroke="#e5e7eb" stroke-width="2"/>
+  <rect x="568" y="402" width="78" height="62" rx="8" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+  <rect x="660" y="402" width="78" height="62" rx="8" fill="#f3f4f6" stroke="#d1d5db" stroke-width="1" opacity="0.55"/>
+  <text x="239" y="441" class="mono ghost" text-anchor="middle">2</text>
+  <text x="331" y="441" class="mono" text-anchor="middle">4</text>
+  <text x="423" y="441" class="mono" text-anchor="middle">6</text>
+  <text x="515" y="441" class="mono" text-anchor="middle">9</text>
+  <text x="607" y="441" class="mono" text-anchor="middle">11</text>
+  <text x="699" y="441" class="mono ghost" text-anchor="middle">15</text>
+  <text x="331" y="490" class="label left" text-anchor="middle">L</text>
+  <line x1="331" y1="484" x2="331" y2="468" stroke="#16a34a" stroke-width="3" marker-end="url(#arrow-green)"/>
+  <text x="607" y="490" class="label right" text-anchor="middle">R</text>
+  <line x1="607" y1="484" x2="607" y2="468" stroke="#dc2626" stroke-width="3" marker-end="url(#arrow-red)"/>
+  <text x="815" y="425" class="mono">4 + 11 = 15</text>
+  <text x="815" y="455" class="found">found target pair</text>
+
+  <rect x="240" y="540" width="640" height="48" rx="8" fill="#f8fafc" stroke="#e5e7eb" stroke-width="1.5"/>
+  <text x="560" y="571" class="small" text-anchor="middle">Every move is justified by sorted order, so the scan is linear.</text>
+</svg>

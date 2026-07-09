@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 560" role="img" aria-labelledby="title desc">
+  <title id="title">Organized test folders</title>
+  <desc id="desc">Recommended tests/ layout that mirrors the package and separates unit, integration, and e2e layers.</desc>
+  <defs>
+    <style>
+      text {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        fill: #111827;
+      }
+      .title { font-size: 32px; font-weight: 700; }
+      .subtitle { font-size: 16px; fill: #4b5563; }
+      .heading { font-size: 18px; font-weight: 700; }
+      .body { font-size: 14px; }
+      .small { font-size: 13px; fill: #4b5563; }
+      .mono {
+        font-family: "SF Mono", Menlo, Consolas, monospace;
+        font-size: 14px;
+      }
+    </style>
+  </defs>
+
+  <rect width="1180" height="560" fill="#ffffff"/>
+  <text x="590" y="40" class="title" text-anchor="middle">Tests live outside the package — mirror its shape</text>
+  <text x="590" y="68" class="subtitle" text-anchor="middle">Import the installed product. Group tests by speed/dependency, not by who wrote them.</text>
+
+  <!-- Package side -->
+  <rect x="60" y="100" width="480" height="400" rx="12" fill="#ecfdf5" stroke="#22c55e" stroke-width="2"/>
+  <text x="300" y="136" class="heading" text-anchor="middle" style="fill:#166534">src/myapp/</text>
+  <text x="90" y="180" class="mono">__init__.py</text>
+  <text x="90" y="210" class="mono">cli.py</text>
+  <text x="90" y="240" class="mono">api/</text>
+  <text x="110" y="270" class="mono">routes.py</text>
+  <text x="110" y="300" class="mono">deps.py</text>
+  <text x="90" y="330" class="mono">core/</text>
+  <text x="110" y="360" class="mono">service.py</text>
+  <text x="110" y="390" class="mono">models.py</text>
+  <text x="90" y="430" class="mono">db/</text>
+  <text x="110" y="460" class="mono">repository.py</text>
+
+  <!-- Arrow -->
+  <text x="590" y="300" class="heading" text-anchor="middle">mirrors →</text>
+
+  <!-- Tests side -->
+  <rect x="640" y="100" width="500" height="400" rx="12" fill="#eff6ff" stroke="#0284c7" stroke-width="2"/>
+  <text x="890" y="136" class="heading" text-anchor="middle" style="fill:#075985">tests/</text>
+  <text x="670" y="176" class="mono">conftest.py</text>
+  <text x="860" y="176" class="small">shared fixtures</text>
+  <text x="670" y="210" class="mono">unit/</text>
+  <text x="860" y="210" class="small">fast, no network</text>
+  <text x="690" y="240" class="mono">test_service.py</text>
+  <text x="690" y="268" class="mono">test_models.py</text>
+  <text x="670" y="304" class="mono">integration/</text>
+  <text x="860" y="304" class="small">db / http / queue</text>
+  <text x="690" y="334" class="mono">test_repository.py</text>
+  <text x="690" y="362" class="mono">test_api.py</text>
+  <text x="670" y="398" class="mono">e2e/</text>
+  <text x="860" y="398" class="small">full process flows</text>
+  <text x="690" y="428" class="mono">test_cli_flow.py</text>
+  <text x="670" y="468" class="mono">fixtures/  data/</text>
+  <text x="860" y="468" class="small">static test inputs</text>
+</svg>

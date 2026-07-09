@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 640" role="img" aria-labelledby="title desc">
+  <title id="title">Import statement styles compared</title>
+  <desc id="desc">Comparison of import X, from X import Y, from X import *, and absolute vs relative imports.</desc>
+  <defs>
+    <style>
+      text {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        fill: #111827;
+      }
+      .title { font-size: 28px; font-weight: 700; }
+      .subtitle { font-size: 14px; fill: #4b5563; }
+      .heading { font-size: 16px; font-weight: 700; }
+      .body { font-size: 13px; }
+      .mono {
+        font-family: "SF Mono", Menlo, Consolas, monospace;
+        font-size: 13px;
+        fill: #be185d;
+      }
+      .good { fill: #166534; }
+      .warn { fill: #9a3412; }
+    </style>
+  </defs>
+
+  <rect width="1180" height="640" fill="#ffffff"/>
+  <text x="590" y="36" class="title" text-anchor="middle">How you write the import changes your namespace</text>
+  <text x="590" y="60" class="subtitle" text-anchor="middle">Same source object, different names bound in the current module</text>
+
+  <rect x="40" y="90" width="540" height="150" rx="10" fill="#ecfdf5" stroke="#22c55e" stroke-width="2"/>
+  <text x="60" y="120" class="heading good">import module</text>
+  <text x="60" y="150" class="mono">import myapp.core.service</text>
+  <text x="60" y="180" class="body">Binds one name: myapp (or the leaf if import leaf)</text>
+  <text x="60" y="210" class="body">Use: myapp.core.service.create_order(...)</text>
+
+  <rect x="600" y="90" width="540" height="150" rx="10" fill="#eff6ff" stroke="#0284c7" stroke-width="2"/>
+  <text x="620" y="120" class="heading" style="fill:#075985">from module import name</text>
+  <text x="620" y="150" class="mono">from myapp.core.service import create_order</text>
+  <text x="620" y="180" class="body">Binds create_order in this file</text>
+  <text x="620" y="210" class="body">Use: create_order(...) — short, clear for APIs</text>
+
+  <rect x="40" y="270" width="540" height="150" rx="10" fill="#f5f3ff" stroke="#9333ea" stroke-width="2"/>
+  <text x="60" y="300" class="heading" style="fill:#6d28d9">import module as alias</text>
+  <text x="60" y="330" class="mono">import numpy as np</text>
+  <text x="60" y="360" class="mono">from pathlib import Path as P</text>
+  <text x="60" y="390" class="body">Same object, shorter/local name. Use sparingly.</text>
+
+  <rect x="600" y="270" width="540" height="150" rx="10" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+  <text x="620" y="300" class="heading warn">from module import *</text>
+  <text x="620" y="330" class="mono">from utils import *</text>
+  <text x="620" y="360" class="body">Dumps many names into this module</text>
+  <text x="620" y="390" class="body">Hard to track origins — avoid in app code</text>
+
+  <rect x="40" y="450" width="540" height="150" rx="10" fill="#ecfdf5" stroke="#22c55e" stroke-width="2"/>
+  <text x="60" y="480" class="heading good">Absolute (preferred default)</text>
+  <text x="60" y="515" class="mono">from myapp.core.service import create_order</text>
+  <text x="60" y="550" class="body">Starts at top package. Clear, move-safe, company default.</text>
+
+  <rect x="600" y="450" width="540" height="150" rx="10" fill="#f3e8ff" stroke="#9333ea" stroke-width="2"/>
+  <text x="620" y="480" class="heading" style="fill:#6d28d9">Explicit relative (inside package)</text>
+  <text x="620" y="515" class="mono">from .service import create_order</text>
+  <text x="620" y="545" class="mono">from ..db.repository import save</text>
+  <text x="620" y="575" class="body">. = this package · .. = parent. Needs package context.</text>
+</svg>

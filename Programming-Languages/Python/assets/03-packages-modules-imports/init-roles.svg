@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 520" role="img" aria-labelledby="title desc">
+  <title id="title">Roles of __init__.py</title>
+  <desc id="desc">What __init__.py does: marks regular package, runs on first import, optional public API re-exports.</desc>
+  <defs>
+    <style>
+      text {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        fill: #111827;
+      }
+      .title { font-size: 28px; font-weight: 700; }
+      .subtitle { font-size: 14px; fill: #4b5563; }
+      .heading { font-size: 16px; font-weight: 700; }
+      .body { font-size: 13px; }
+      .mono {
+        font-family: "SF Mono", Menlo, Consolas, monospace;
+        font-size: 13px;
+        fill: #be185d;
+      }
+    </style>
+  </defs>
+
+  <rect width="1180" height="520" fill="#ffffff"/>
+  <text x="590" y="38" class="title" text-anchor="middle">What __init__.py is for</text>
+  <text x="590" y="64" class="subtitle" text-anchor="middle">Regular packages own one directory. Empty files are fine. Heavy work at import time is not.</text>
+
+  <rect x="40" y="100" width="350" height="360" rx="12" fill="#ecfdf5" stroke="#22c55e" stroke-width="2"/>
+  <text x="215" y="140" class="heading" text-anchor="middle" style="fill:#166534">1. Mark package</text>
+  <text x="60" y="185" class="body">Directory is a regular</text>
+  <text x="60" y="210" class="body">package (not a random</text>
+  <text x="60" y="235" class="body">folder, not a namespace).</text>
+  <text x="60" y="280" class="mono">myapp/__init__.py</text>
+  <text x="60" y="310" class="mono">myapp/core/__init__.py</text>
+  <text x="60" y="360" class="body">Empty file is valid and</text>
+  <text x="60" y="385" class="body">common in apps.</text>
+  <text x="60" y="420" class="body">Company default: keep them.</text>
+
+  <rect x="415" y="100" width="350" height="360" rx="12" fill="#eff6ff" stroke="#0284c7" stroke-width="2"/>
+  <text x="590" y="140" class="heading" text-anchor="middle" style="fill:#075985">2. Run on first import</text>
+  <text x="435" y="185" class="body">First time you import the</text>
+  <text x="435" y="210" class="body">package, this file runs.</text>
+  <text x="435" y="250" class="mono">import myapp</text>
+  <text x="435" y="280" class="body">→ executes __init__.py</text>
+  <text x="435" y="320" class="body">Good: version string,</text>
+  <text x="435" y="345" class="body">small public re-exports.</text>
+  <text x="435" y="385" class="body">Bad: DB connects, network,</text>
+  <text x="435" y="410" class="body">reading huge files,</text>
+  <text x="435" y="435" class="body">starting threads.</text>
+
+  <rect x="790" y="100" width="350" height="360" rx="12" fill="#f5f3ff" stroke="#9333ea" stroke-width="2"/>
+  <text x="965" y="140" class="heading" text-anchor="middle" style="fill:#6d28d9">3. Shape public API</text>
+  <text x="810" y="185" class="body">Optional re-exports so</text>
+  <text x="810" y="210" class="body">callers write short imports.</text>
+  <text x="810" y="250" class="mono"># myapp/__init__.py</text>
+  <text x="810" y="280" class="mono">from .core.service import</text>
+  <text x="810" y="305" class="mono">    create_order</text>
+  <text x="810" y="345" class="mono">from myapp import create_order</text>
+  <text x="810" y="385" class="body">Keep surface small.</text>
+  <text x="810" y="410" class="body">Do not re-export everything</text>
+  <text x="810" y="435" class="body">just to avoid dots.</text>
+</svg>

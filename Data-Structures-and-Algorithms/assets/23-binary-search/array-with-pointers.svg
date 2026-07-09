@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="620" height="160" viewBox="0 0 620 160" font-family="system-ui, -apple-system, sans-serif">
+  <!-- Background -->
+  <rect x="0" y="0" width="620" height="160" fill="#f8fafc"/>
+
+  <!-- Title -->
+  <text x="310" y="22" font-size="14" font-weight="600" fill="#334155" text-anchor="middle">Binary Search Pointers</text>
+
+  <!-- Array boxes -->
+  <g id="array">
+    <!-- Boxes -->
+    <rect x="60"  y="50" width="60" height="50" rx="4" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2"/>
+    <rect x="120" y="50" width="60" height="50" rx="4" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2"/>
+    <rect x="180" y="50" width="60" height="50" rx="4" fill="#bae6fd" stroke="#0284c8" stroke-width="3"/>
+    <rect x="240" y="50" width="60" height="50" rx="4" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2"/>
+    <rect x="300" y="50" width="60" height="50" rx="4" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2"/>
+    <rect x="360" y="50" width="60" height="50" rx="4" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2"/>
+    <rect x="420" y="50" width="60" height="50" rx="4" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2"/>
+
+    <!-- Values -->
+    <text x="90"  y="82" font-size="18" font-weight="600" fill="#0f172a" text-anchor="middle">1</text>
+    <text x="150" y="82" font-size="18" font-weight="600" fill="#0f172a" text-anchor="middle">3</text>
+    <text x="210" y="82" font-size="18" font-weight="700" fill="#0369a1" text-anchor="middle">5</text>
+    <text x="270" y="82" font-size="18" font-weight="600" fill="#0f172a" text-anchor="middle">7</text>
+    <text x="330" y="82" font-size="18" font-weight="600" fill="#0f172a" text-anchor="middle">9</text>
+    <text x="390" y="82" font-size="18" font-weight="600" fill="#0f172a" text-anchor="middle">11</text>
+    <text x="450" y="82" font-size="18" font-weight="600" fill="#0f172a" text-anchor="middle">13</text>
+
+    <!-- Index labels -->
+    <text x="90"  y="110" font-size="11" fill="#64748b" text-anchor="middle">0</text>
+    <text x="150" y="110" font-size="11" fill="#64748b" text-anchor="middle">1</text>
+    <text x="210" y="110" font-size="11" fill="#64748b" text-anchor="middle">2</text>
+    <text x="270" y="110" font-size="11" fill="#64748b" text-anchor="middle">3</text>
+    <text x="330" y="110" font-size="11" fill="#64748b" text-anchor="middle">4</text>
+    <text x="390" y="110" font-size="11" fill="#64748b" text-anchor="middle">5</text>
+    <text x="450" y="110" font-size="11" fill="#64748b" text-anchor="middle">6</text>
+  </g>
+
+  <!-- Left pointer -->
+  <g>
+    <polygon points="75,130 85,145 65,145" fill="#22c55e"/>
+    <text x="75" y="140" font-size="13" font-weight="700" fill="#166534" text-anchor="middle">left</text>
+    <line x1="75" y1="125" x2="75" y2="102" stroke="#22c55e" stroke-width="2.5" stroke-dasharray="3,2"/>
+  </g>
+
+  <!-- Mid pointer -->
+  <g>
+    <polygon points="210,35 220,20 200,20" fill="#f43f5e"/>
+    <text x="210" y="16" font-size="13" font-weight="700" fill="#9f1239" text-anchor="middle">mid</text>
+    <line x1="210" y1="37" x2="210" y2="48" stroke="#f43f5e" stroke-width="2.5" stroke-dasharray="3,2"/>
+  </g>
+
+  <!-- Right pointer -->
+  <g>
+    <polygon points="435,130 445,145 425,145" fill="#8b5cf6"/>
+    <text x="435" y="140" font-size="13" font-weight="700" fill="#581c87" text-anchor="middle">right</text>
+    <line x1="435" y1="125" x2="435" y2="102" stroke="#8b5cf6" stroke-width="2.5" stroke-dasharray="3,2"/>
+  </g>
+
+  <!-- Legend -->
+  <text x="530" y="70" font-size="11" fill="#475569">left = 0</text>
+  <text x="530" y="85" font-size="11" fill="#475569">mid = 3</text>
+  <text x="530" y="100" font-size="11" fill="#475569">right = 6</text>
+</svg>

@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 700" role="img" aria-labelledby="title desc">
+  <title id="title">How Python programs start</title>
+  <desc id="desc">Four common ways to start a Python app and what __name__ becomes in each case.</desc>
+  <defs>
+    <style>
+      text {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        fill: #111827;
+      }
+      .title { font-size: 32px; font-weight: 700; }
+      .subtitle { font-size: 16px; fill: #4b5563; }
+      .heading { font-size: 17px; font-weight: 700; }
+      .body { font-size: 14px; }
+      .small { font-size: 13px; fill: #4b5563; }
+      .mono {
+        font-family: "SF Mono", Menlo, Consolas, monospace;
+        font-size: 13px;
+      }
+      .mono-pink {
+        font-family: "SF Mono", Menlo, Consolas, monospace;
+        font-size: 13px;
+        fill: #be185d;
+      }
+      .good { fill: #166534; }
+      .warn { fill: #9a3412; }
+    </style>
+  </defs>
+
+  <rect width="1180" height="700" fill="#ffffff"/>
+  <text x="590" y="40" class="title" text-anchor="middle">Starting a Python program — company-friendly options</text>
+  <text x="590" y="68" class="subtitle" text-anchor="middle">Pick one primary entry. Document it in the README. Prefer installable entry points over ad-hoc scripts.</text>
+
+  <!-- Card 1 -->
+  <rect x="40" y="100" width="540" height="250" rx="12" fill="#ecfdf5" stroke="#22c55e" stroke-width="2"/>
+  <text x="60" y="136" class="heading good">A. Module entry (preferred for apps)</text>
+  <text x="60" y="168" class="mono-pink">python -m myapp</text>
+  <text x="60" y="198" class="body">Runs src/myapp/__main__.py</text>
+  <text x="60" y="224" class="body">Package must be on sys.path (editable install).</text>
+  <text x="60" y="250" class="body">Inside that file: __name__ == "__main__"</text>
+  <text x="60" y="276" class="body">Importing myapp elsewhere does not run it.</text>
+  <text x="60" y="310" class="small">Best for libraries that also ship a runnable form.</text>
+  <text x="60" y="330" class="small">CI and local: same command after pip install -e .</text>
+
+  <!-- Card 2 -->
+  <rect x="600" y="100" width="540" height="250" rx="12" fill="#eff6ff" stroke="#0284c7" stroke-width="2"/>
+  <text x="620" y="136" class="heading" style="fill:#075985">B. Console script (preferred for CLIs)</text>
+  <text x="620" y="168" class="mono-pink">myapp serve --port 8000</text>
+  <text x="620" y="198" class="body">Declared in pyproject.toml [project.scripts]</text>
+  <text x="620" y="224" class="body">Installer creates a small wrapper on PATH.</text>
+  <text x="620" y="250" class="body">Points at myapp.cli:main (function, not file).</text>
+  <text x="620" y="276" class="body">Users never type python paths.</text>
+  <text x="620" y="310" class="small">This is what most shipped tools look like (black, ruff, pytest).</text>
+  <text x="620" y="330" class="small">Company standard for anything users invoke daily.</text>
+
+  <!-- Card 3 -->
+  <rect x="40" y="380" width="540" height="250" rx="12" fill="#f5f3ff" stroke="#9333ea" stroke-width="2"/>
+  <text x="60" y="416" class="heading" style="fill:#6d28d9">C. Framework runner</text>
+  <text x="60" y="448" class="mono-pink">uvicorn myapp.api:app --reload</text>
+  <text x="60" y="478" class="mono-pink">flask --app myapp run</text>
+  <text x="60" y="508" class="mono-pink">django-admin / manage.py runserver</text>
+  <text x="60" y="538" class="body">Framework owns the process lifecycle.</text>
+  <text x="60" y="564" class="body">You export an app/object, not a main loop.</text>
+  <text x="60" y="598" class="small">Still install the package so myapp.api imports cleanly.</text>
+  <text x="60" y="622" class="small">Prod often uses gunicorn/uvicorn workers, not --reload.</text>
+
+  <!-- Card 4 -->
+  <rect x="600" y="380" width="540" height="250" rx="12" fill="#fff7ed" stroke="#ea580c" stroke-width="2"/>
+  <text x="620" y="416" class="heading warn">D. Script file (fine for tiny tools)</text>
+  <text x="620" y="448" class="mono-pink">python scripts/seed_db.py</text>
+  <text x="620" y="478" class="body">__name__ is "__main__" only for that file.</text>
+  <text x="620" y="504" class="body">sys.path[0] becomes the script's directory.</text>
+  <text x="620" y="530" class="body">Easy to break package imports if layout is wrong.</text>
+  <text x="620" y="556" class="body">Keep scripts thin; put real logic in the package.</text>
+  <text x="620" y="590" class="small">OK for one-off ops scripts. Not the main product entry.</text>
+  <text x="620" y="614" class="small">Guard with if __name__ == "__main__": main()</text>
+</svg>

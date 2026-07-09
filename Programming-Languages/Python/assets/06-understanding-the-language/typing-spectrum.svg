@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 360" role="img" aria-labelledby="title desc">
+  <title id="title">Python typing spectrum</title>
+  <desc id="desc">Dynamic runtime typing with optional static type hints checked by external tools.</desc>
+  <defs>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; fill: #111827; }
+      .title { font-size: 26px; font-weight: 700; }
+      .heading { font-size: 15px; font-weight: 700; }
+      .body { font-size: 13px; }
+      .mono { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 12px; fill: #be185d; }
+    </style>
+  </defs>
+  <rect width="1180" height="360" fill="#ffffff"/>
+  <text x="590" y="36" class="title" text-anchor="middle">Is Python typed? — both, in different layers</text>
+
+  <rect x="50" y="80" width="520" height="240" rx="12" fill="#ecfdf5" stroke="#22c55e" stroke-width="2"/>
+  <text x="310" y="120" class="heading" text-anchor="middle" style="fill:#166534">Runtime: dynamic</text>
+  <text x="80" y="160" class="body">Types live on objects, checked when ops run</text>
+  <text x="80" y="195" class="mono">x = 1; x = "hi"  # OK at runtime</text>
+  <text x="80" y="235" class="body">Errors: TypeError when an op is invalid</text>
+  <text x="80" y="275" class="body">“Duck typing”: if it quacks, use it</text>
+
+  <rect x="610" y="80" width="520" height="240" rx="12" fill="#eff6ff" stroke="#0284c7" stroke-width="2"/>
+  <text x="870" y="120" class="heading" text-anchor="middle" style="fill:#075985">Optional: static hints</text>
+  <text x="640" y="160" class="body">Annotations for humans + mypy/pyright</text>
+  <text x="640" y="195" class="mono">def f(x: int) -> str: ...</text>
+  <text x="640" y="235" class="body">CPython mostly ignores them at runtime</text>
+  <text x="640" y="275" class="body">Gradual typing — adopt where it pays</text>
+</svg>
