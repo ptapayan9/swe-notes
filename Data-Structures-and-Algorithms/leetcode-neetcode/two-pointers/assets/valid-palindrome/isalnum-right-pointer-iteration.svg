@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Valid Palindrome right pointer skip iteration</title>
+  <desc id="desc">Diagram showing the right pointer skipping non-alphanumeric characters with right minus equals one until it reaches a comparable letter.</desc>
+  <defs>
+    <style>
+      .bg { fill: #ffffff; }
+      .panel { fill: #f8fafc; stroke: #cbd5e1; stroke-width: 1.5; }
+      .title { fill: #0f172a; font: 700 26px Arial, sans-serif; }
+      .subtitle { fill: #334155; font: 15px Arial, sans-serif; }
+      .label { fill: #334155; font: 700 16px Arial, sans-serif; }
+      .small { fill: #475569; font: 14px Arial, sans-serif; }
+      .code { fill: #0f172a; font: 700 15px "SFMono-Regular", Consolas, monospace; }
+      .box { fill: #ffffff; stroke: #94a3b8; stroke-width: 1.5; }
+      .box-left { fill: #dbeafe; stroke: #2563eb; stroke-width: 1.8; }
+      .box-right { fill: #fee2e2; stroke: #dc2626; stroke-width: 1.8; }
+      .box-skip { fill: #f1f5f9; stroke: #94a3b8; stroke-width: 1.5; }
+      .idx { fill: #64748b; font: 13px "SFMono-Regular", Consolas, monospace; }
+      .char { fill: #0f172a; font: 700 27px "SFMono-Regular", Consolas, monospace; }
+      .blue { fill: #1d4ed8; font: 700 15px Arial, sans-serif; }
+      .red { fill: #b91c1c; font: 700 15px Arial, sans-serif; }
+      .green { fill: #047857; font: 700 15px Arial, sans-serif; }
+      .muted { fill: #64748b; font: 13px Arial, sans-serif; }
+      .arrow-red { stroke: #dc2626; stroke-width: 2.5; fill: none; marker-end: url(#arrowRed); }
+      .arrow-green { stroke: #059669; stroke-width: 2.5; fill: none; marker-end: url(#arrowGreen); }
+      .line { stroke: #cbd5e1; stroke-width: 1.5; }
+    </style>
+    <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#dc2626"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#059669"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1200" height="760"/>
+
+  <text class="title" x="40" y="48">Valid Palindrome: right pointer skipping with isalnum()</text>
+  <text class="subtitle" x="40" y="78">Example string: s = "a!a!!". Only letters and digits count, so the right pointer skips trailing punctuation.</text>
+
+  <rect class="panel" x="40" y="112" width="1120" height="185" rx="18"/>
+  <text class="label" x="70" y="148">String layout</text>
+  <text class="small" x="70" y="176">Left is already on a valid letter. Right starts at the last character and moves left until it finds a letter or digit.</text>
+
+  <g transform="translate(397 205)">
+    <text class="idx" x="30" y="-14" text-anchor="middle">0</text>
+    <rect class="box-left" x="0" y="0" width="60" height="58" rx="7"/>
+    <text class="char" x="30" y="38" text-anchor="middle">a</text>
+    <text class="blue" x="30" y="88" text-anchor="middle">left</text>
+
+    <text class="idx" x="110" y="-14" text-anchor="middle">1</text>
+    <rect class="box-skip" x="80" y="0" width="60" height="58" rx="7"/>
+    <text class="char" x="110" y="38" text-anchor="middle">!</text>
+    <text class="muted" x="110" y="88" text-anchor="middle">skip</text>
+
+    <text class="idx" x="190" y="-14" text-anchor="middle">2</text>
+    <rect class="box" x="160" y="0" width="60" height="58" rx="7"/>
+    <text class="char" x="190" y="38" text-anchor="middle">a</text>
+    <text class="green" x="190" y="88" text-anchor="middle">compare</text>
+
+    <text class="idx" x="270" y="-14" text-anchor="middle">3</text>
+    <rect class="box-skip" x="240" y="0" width="60" height="58" rx="7"/>
+    <text class="char" x="270" y="38" text-anchor="middle">!</text>
+    <text class="muted" x="270" y="88" text-anchor="middle">skip</text>
+
+    <text class="idx" x="350" y="-14" text-anchor="middle">4</text>
+    <rect class="box-right" x="320" y="0" width="60" height="58" rx="7"/>
+    <text class="char" x="350" y="38" text-anchor="middle">!</text>
+    <text class="red" x="350" y="88" text-anchor="middle">right</text>
+  </g>
+
+  <rect class="panel" x="40" y="330" width="340" height="330" rx="18"/>
+  <text class="label" x="70" y="366">Iteration 1</text>
+  <text class="code" x="70" y="398">s[right] = "!"</text>
+  <text class="small" x="70" y="428">"!" is not alphanumeric.</text>
+  <text class="code" x="70" y="462">not s[right].isalnum()</text>
+  <text class="small" x="70" y="492">The skip loop runs.</text>
+  <text class="code" x="70" y="526">right -= 1</text>
+  <path class="arrow-red" d="M270 545 C245 590, 175 590, 150 545"/>
+  <text class="red" x="210" y="620" text-anchor="middle">right moves 4 -> 3</text>
+
+  <rect class="panel" x="430" y="330" width="340" height="330" rx="18"/>
+  <text class="label" x="460" y="366">Iteration 2</text>
+  <text class="code" x="460" y="398">s[right] = "!"</text>
+  <text class="small" x="460" y="428">Still punctuation.</text>
+  <text class="code" x="460" y="462">not s[right].isalnum()</text>
+  <text class="small" x="460" y="492">The skip loop runs again.</text>
+  <text class="code" x="460" y="526">right -= 1</text>
+  <path class="arrow-red" d="M660 545 C635 590, 565 590, 540 545"/>
+  <text class="red" x="600" y="620" text-anchor="middle">right moves 3 -> 2</text>
+
+  <rect class="panel" x="820" y="330" width="340" height="330" rx="18"/>
+  <text class="label" x="850" y="366">Iteration 3</text>
+  <text class="code" x="850" y="398">s[right] = "a"</text>
+  <text class="small" x="850" y="428">"a" is alphanumeric.</text>
+  <text class="code" x="850" y="462">s[left].lower() ==</text>
+  <text class="code" x="850" y="488">s[right].lower()</text>
+  <text class="small" x="850" y="522">Compare the real characters.</text>
+  <path class="arrow-green" d="M900 552 C940 520, 1040 520, 1080 552"/>
+  <text class="green" x="990" y="588" text-anchor="middle">"a" matches "a"</text>
+  <text class="code" x="850" y="626">left += 1</text>
+  <text class="code" x="1000" y="626">right -= 1</text>
+
+  <line class="line" x1="40" y1="700" x2="1160" y2="700"/>
+  <text class="small" x="40" y="730">Takeaway: isalnum() decides whether a character counts. right -= 1 skips ignored characters from the right side.</text>
+</svg>
