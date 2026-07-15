@@ -45,7 +45,7 @@ if True:
 
 ## 2. Names, objects, and memory (core model)
 
-In Python you almost never “put a value *inside* a variable” like a C stack slot for a raw int. You **bind a name to an object**.
+In Python you almost never “put a value *inside* a variable” like a C stack slot for a raw int. You **bind a name to an object**.d
 
 ![Names vs objects](./assets/04-basic-syntax-and-data-types/names-vs-objects.svg)
 

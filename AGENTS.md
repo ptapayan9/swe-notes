@@ -1,4 +1,4 @@
-# notes-gilgamesh — Typora notes vault
+# notes — Typora notes vault
 
 This repo is a **Typora**-edited Markdown notes vault. It is portable: cloned on any host, every note must render the same way, every cross-link must resolve. If you're editing a note from inside this repo, follow the rules in this file. If you're *creating* a new note, prefer using the `typora-note-taking` skill or `phd-note-taker` agent (see "Tooling" below) — they encode this same spec.
 

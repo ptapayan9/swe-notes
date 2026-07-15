@@ -227,6 +227,7 @@ gen = (x * x for x in nums)   # generator — lazy, not a list
 sum(x * x for x in huge_range)
 ```
 
+Full treatment (nested fors, filter vs ternary, scope, recipes): [07.5 — Comprehensions](./07.5-lists-tuples-sets-dicts-comprehensions.md).
 ---
 
 ## 8. EAFP vs LBYL in control flow

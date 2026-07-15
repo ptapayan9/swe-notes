@@ -1,7 +1,7 @@
 ---
 title: "Binary Search"
 created: 2026-06-10
-updated: 2026-07-03
+updated: 2026-07-13
 tags: [dsa, binary-search]
 aliases: []
 ---
@@ -195,7 +195,7 @@ Use `while left < right` so `mid + 1` is always safe.
 
 ### Finding the minimum in a rotated sorted array
 
-The array was sorted then rotated. Compare mid to the right end.
+The array was sorted then rotated. Compare mid to the **right end** — not the left. The minimum is the **pivot** where the array drops (e.g. `…, 7, 0, 1, …`).
 
 ```python
 while left < right:
@@ -207,7 +207,25 @@ while left < right:
         right = mid             # mid might be the minimum
 ```
 
-When `nums[mid] <= nums[right]`, mid has not been ruled out, so keep it.
+#### How to know which operator (`>` vs `<`)?
+
+| Condition | Meaning | Action |
+| :--- | :--- | :--- |
+| `nums[mid] > nums[right]` | Big drop is on the right | `left = mid + 1` |
+| `nums[mid] < nums[right]` | Right side is sorted → min is on the left (or at mid) | `right = mid` |
+| `nums[mid] == nums[right]` | Duplicates — can't be sure which side | `right -= 1` (shrink) |
+
+**Simple mental model**
+
+- The minimum is the pivot where the array **drops**.
+- If mid is **bigger** than the rightmost element → there must be a drop on the **right** → go right (`left = mid + 1`).
+- If mid is **smaller** than the rightmost element → the right side is sorted → minimum is on the **left** (including mid) → go left (`right = mid`).
+- When equal (duplicates), shrink carefully — you can't prove which half holds the min.
+
+> [!TIP]
+> Always compare to `nums[right]`, not `nums[left]`. The right end is a stable anchor: if mid is larger than it, the rotation (the drop) is definitely to the right of mid.
+
+When `nums[mid] <= nums[right]` (no dups, or you folded equals into the keep-mid branch), mid has not been ruled out, so keep it with `right = mid`.
 
 ### Searching for a target in a rotated sorted array with duplicates
 

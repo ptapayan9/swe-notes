@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 400" role="img" aria-labelledby="title desc">
+  <title id="title">Nested for in a comprehension</title>
+  <desc id="desc">Reading order matches nested loops: leftmost for is outer; later for is inner.</desc>
+  <defs>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; fill: #111827; }
+      .title { font-size: 24px; font-weight: 700; }
+      .subtitle { font-size: 14px; fill: #4b5563; }
+      .heading { font-size: 15px; font-weight: 700; }
+      .body { font-size: 13px; }
+      .mono { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 13px; fill: #be185d; }
+      .label { font-size: 12px; fill: #64748b; }
+      .small { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 12px; fill: #0f766e; }
+    </style>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <rect width="1180" height="400" fill="#ffffff"/>
+  <text x="590" y="34" class="title" text-anchor="middle">Nested fors — left is outer</text>
+  <text x="590" y="58" class="subtitle" text-anchor="middle">[(r, c) for r in rows for c in cols] walks like nested for-loops.</text>
+
+  <rect x="40" y="90" width="540" height="280" rx="14" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+  <text x="310" y="125" class="heading" text-anchor="middle">Comprehension (left → right)</text>
+  <text x="70" y="170" class="mono">[(r, c)</text>
+  <text x="70" y="205" class="mono">  for r in rows      # outer</text>
+  <text x="70" y="240" class="mono">  for c in cols]     # inner</text>
+  <text x="70" y="290" class="label">Same order you would write nested fors.</text>
+  <text x="70" y="320" class="label">if clauses can sit after any for.</text>
+  <text x="70" y="350" class="body">Flatten: [x for row in m for x in row]</text>
+
+  <rect x="620" y="90" width="520" height="280" rx="14" fill="#ecfdf5" stroke="#22c55e" stroke-width="2"/>
+  <text x="880" y="125" class="heading" text-anchor="middle" style="fill:#166534">Loop equivalent</text>
+  <text x="650" y="170" class="mono">out = []</text>
+  <text x="650" y="200" class="mono">for r in rows:       # outer</text>
+  <text x="670" y="230" class="mono">for c in cols:   # inner</text>
+  <text x="690" y="260" class="mono">out.append((r, c))</text>
+
+  <text x="650" y="310" class="label">rows = [0,1]  cols = ["a","b"]</text>
+  <text x="650" y="340" class="small">→ [(0,"a"), (0,"b"), (1,"a"), (1,"b")]</text>
+</svg>

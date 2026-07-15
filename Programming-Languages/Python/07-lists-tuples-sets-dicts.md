@@ -1,8 +1,8 @@
 ---
 title: "Lists, Tuples, Sets, and Dicts"
 created: 2026-07-08
-updated: 2026-07-08
-tags: [programming-languages, python, collections, list, dict, set, tuple]
+updated: 2026-07-10
+tags: [programming-languages, python, collections, list, dict, set, tuple, unpacking, comprehensions]
 aliases: ["Python collections", "Python data structures built-in", "list tuple set dict"]
 ---
 
@@ -10,8 +10,7 @@ aliases: ["Python collections", "Python data structures built-in", "list tuple s
 
 [toc]
 
-> **TL;DR:** Python’s everyday data structures are **list**, **tuple**, **set**, and **dict**. All of them store **references** to objects. Choose by job: ordered growable sequence, fixed record, unique membership, or key→value lookup. Cost and gotchas follow from that model—not from “variables holding values.”
-
+> **TL;DR:** Python’s everyday data structures are **list**, **tuple**, **set**, and **dict**. All of them store **references** to objects. Choose by job: ordered growable sequence, fixed record, unique membership, or key→value lookup. Once you have them, **pack / unpack** (and `*`, `**`) is how you move values in and out cleanly.
 ---
 
 ## 1. The four jobs (start here)
@@ -83,8 +82,7 @@ squares = [x * x for x in range(10) if x % 2 == 0]
 ```
 
 > [!NOTE]
-> A comprehension **allocates the full result**. For huge streams, use a generator expression `(...)` and consume it (see [05](./05-conditionals-and-loops.md)).
-
+> A comprehension **allocates the full result**. For huge streams, use a generator expression `(...)` and consume it (see [05](./05-conditionals-and-loops.md)). Deep dive: [07.5 — Comprehensions](./07.5-lists-tuples-sets-dicts-comprehensions.md).
 ---
 
 ## 3. Tuple — ordered, immutable sequence
@@ -205,7 +203,196 @@ for word in words:
 
 ---
 
-## 6. Choosing and converting
+## 6. Packing, unpacking, and everyday manipulation
+
+**Packing** means several values become one container. **Unpacking** means one iterable (or mapping) becomes several names. Python uses this constantly: multi-return, swap, loops, merges, and call sites.
+
+![Pack vs unpack](./assets/07-lists-tuples-sets-dicts/pack-unpack.svg)
+
+### Pack — many values → one container
+
+A comma builds a **tuple** (parentheses are optional except for empty or single-element cases). Lists and dicts pack with brackets / braces.
+
+```python
+point = 3, 4              # pack → (3, 4)
+point = (3, 4)            # same, clearer
+
+only = (1,)               # single-element tuple needs trailing comma
+not_a_tuple = (1)         # just int 1
+
+coords = [10, 20, 30]     # list pack
+user = {"id": 1, "name": "ada"}
+
+def minmax(xs):
+    return min(xs), max(xs)   # pack two values for the caller
+```
+
+> [!NOTE]
+> “Packing” is not a separate type of statement. It is just how assignment and `return` create a tuple (or you build a list/dict yourself).
+
+### Unpack — one iterable → many names
+
+On the **left** of `=`, names match positions of an **iterable** on the right. Length must match unless you use `*`.
+
+```python
+x, y = point              # x=3, y=4
+a, b, c = "hi!"           # strings are iterable → "h", "i", "!"
+
+# classic swap (no temp)
+a, b = b, a
+
+# multi-return unpack
+lo, hi = minmax([3, 1, 4])
+
+# nested
+((r, g), b) = ((255, 0), 128)
+```
+
+Works for any iterable of the right length: list, tuple, str, generator, dict keys if you write `k1, k2 = d` (usually wrong intent—prefer `.items()`).
+
+> [!WARNING]
+> Too few or too many values → `ValueError: not enough values to unpack` / `too many values to unpack`. Use `*` when length varies.
+
+### Star unpacking (`*`) — grab the rest
+
+Exactly **one** starred target on the left may absorb the leftover sequence into a **list**.
+
+```python
+first, *rest = [10, 20, 30, 40]
+# first=10, rest=[20, 30, 40]
+
+*head, last = [10, 20, 30, 40]
+# head=[10, 20, 30], last=40
+
+first, *mid, last = [10, 20, 30, 40]
+# first=10, mid=[20, 30], last=40
+
+# ignore a middle value with _
+name, _, age = ("ada", "unused", 36)
+```
+
+| Pattern | Result of `*` |
+| :--- | :--- |
+| `a, *b = xs` | `b` is a **list** (may be empty) |
+| `*a, b = xs` | same |
+| `a, *b, c = xs` | needs at least 2 items |
+
+On the **right** (or in a call / display), `*` **expands** an iterable into positions:
+
+```python
+a = [1, 2]
+b = [3, 4]
+merged = [*a, *b]         # [1, 2, 3, 4]
+t = (*a, 99)              # (1, 2, 99)
+
+print(*a)                 # print(1, 2) — expand into args
+```
+
+### Dict unpacking (`**`) — keys as keywords / merge
+
+`**` expands a mapping into **key=value** pairs. Keys must be strings when used as function keywords.
+
+```python
+defaults = {"host": "localhost", "port": 5432}
+overrides = {"port": 5433}
+
+cfg = {**defaults, **overrides}   # {"host": "localhost", "port": 5433}
+# same idea (3.9+): defaults | overrides
+
+def connect(host, port):
+    ...
+
+connect(**cfg)                    # connect(host=..., port=...)
+```
+
+> [!TIP]
+> Prefer `d | other` (3.9+) when both sides are dicts and you want a clear merge. Use `{**a, **b}` when building a new dict from several mappings or mixing with literals: `{**base, "debug": True}`.
+
+### Unpack in loops — `enumerate`, `zip`, `.items()`
+
+These APIs already yield tuples; unpack each step.
+
+```python
+for i, item in enumerate(cart):
+    print(i, item)
+
+for sku, qty in stock.items():
+    print(sku, qty)
+
+for name, age in zip(names, ages):
+    ...
+
+# zip longest not needed often — lengths should match
+for a, b in zip(xs, ys, strict=True):  # 3.10+: error if lengths differ
+    ...
+```
+
+### In-place manipulation (mutate the same object)
+
+Different from packing/unpacking: methods that **change** the container you already have.
+
+```python
+# list
+xs = [1, 2]
+xs.append(3)          # [1, 2, 3]
+xs.extend([4, 5])     # [1, 2, 3, 4, 5]  — same as xs += [4, 5]
+xs[1:3] = [20, 30]    # slice assignment (can grow/shrink)
+xs += [6]             # mutates xs (for lists)
+# ys = xs + [7]       # new list — does not mutate xs
+
+# set
+s = {1, 2}
+s.add(3)
+s |= {4, 5}           # update in place (union)
+s &= {1, 3, 9}        # intersection update → {1, 3}
+
+# dict
+d = {"a": 1}
+d.update(b=2, c=3)    # or d.update({"b": 2})
+d |= {"c": 9}         # 3.9+ merge into d
+d["a"] = 10
+del d["b"]
+```
+
+| Structure | Build new | Mutate existing |
+| :--- | :--- | :--- |
+| list | `xs + ys`, `[*xs, *ys]`, slice copy | `append`, `extend`, `+=`, slice assign |
+| tuple | `t + (x,)`, `(*t, x)` | n/a (immutable) |
+| set | `a \| b`, `a & b` | `add`, `update`, `\|=`, `&=` |
+| dict | `a \| b`, `{**a, **b}` | `update`, `\|=`, `d[k]=`, `del` |
+
+> [!IMPORTANT]
+> `xs += ys` for a **list** mutates `xs`. For a **tuple**, `t += (1,)` rebinds `t` to a **new** tuple (same syntax, different meaning). Know which object you hold.
+
+### Quick recipes
+
+```python
+# head / tail
+head, *tail = items
+
+# peel first and last
+first, *_, last = items
+
+# dict → parallel lists
+keys = list(d)
+vals = list(d.values())
+
+# parallel lists → dict
+d = dict(zip(keys, vals))
+
+# flatten one level of lists
+flat = [x for row in rows for x in row]
+# or: flat = [*row1, *row2, *row3]
+
+# swap two dict keys' values (careful: both must exist)
+d["a"], d["b"] = d["b"], d["a"]
+```
+
+Call-site packing with `*args` / `**kwargs` is covered in [08 — Functions and Classes](./08-functions-and-classes.md).
+
+---
+
+## 7. Choosing and converting
 
 ```python
 list("ab")              # ["a", "b"]
@@ -224,7 +411,7 @@ dict(zip(keys, vals))
 
 ---
 
-## 7. Copying: shallow vs deep
+## 8. Copying: shallow vs deep
 
 Assignment shares the container. `.copy()` / `list(xs)` / `xs[:]` make a **shallow** copy: new outer container, same element objects.
 
@@ -250,7 +437,7 @@ a[0].append(9)
 
 ---
 
-## 8. Comprehensions for all four
+## 9. Comprehensions for all four
 
 ```python
 xs = [x * 2 for x in range(5)]           # list
@@ -259,11 +446,10 @@ ss = {x % 3 for x in range(10)}          # set
 dd = {c: ord(c) for c in "ab"}           # dict
 ```
 
-Dict and set comps use `{}` with different insides: `{k: v ...}` vs `{x ...}`.
-
+Dict and set comps use `{}` with different insides: `{k: v ...}` vs `{x ...}`. Nested fors, filters vs ternaries, generator laziness, and gotchas: [07.5 — Comprehensions](./07.5-lists-tuples-sets-dicts-comprehensions.md).
 ---
 
-## 9. Mini example — inventory sketch
+## 10. Mini example — inventory sketch
 
 Scenario: track stock SKUs, unique tags, and a fixed warehouse coordinate.
 
@@ -283,14 +469,25 @@ stock["sku-1"] -= 1
 warehouse = ("A", 12)          # aisle, bin
 locations = {warehouse: stock}
 
+# unpack + star: first line item, rest of cart
+first_sku, *other_skus = cart
+
+# dict items unpack in a loop
+for sku, qty in stock.items():
+    print(sku, qty)
+
+aisle, bin_ = warehouse        # unpack fixed record
+merged_tags = {*tags, "sale"}  # pack a new set with *
+
 print(cart.count("sku-1"))     # 2
 print("gift" in tags)          # True
 print(locations[("A", 12)]["sku-2"])  # 3
+print(first_sku, aisle)        # sku-1 A
 ```
 
 ---
 
-## 10. Common gotchas
+## 11. Common gotchas
 
 | Pitfall | What happens | Fix |
 | :--- | :--- | :--- |
@@ -302,7 +499,10 @@ print(locations[("A", 12)]["sku-2"])  # 3
 | Using list for membership in hot loop | O(n) each check | Convert to `set` once |
 | Assuming set order | No index; order not semantic | Don’t rely on order for logic |
 | Tuple “immutable” myth | Inner list still mutates | Only slots are fixed |
-
+| Unpack wrong length | `ValueError` | Match count or use `*rest` |
+| Two `*` on left | SyntaxError | Only one starred target |
+| `**` non-str keys in call | TypeError | Keys must be `str` for kwargs |
+| `list +=` vs `list +` | `+=` mutates; `+` builds new | Know which object aliases see |
 > [!WARNING]
 > Default argument `def f(xs=[])` shares one list across calls. Use `None` and create inside. Same trap for `{}` and `set()`. See [04](./04-basic-syntax-and-data-types.md).
 
@@ -315,7 +515,7 @@ if user_id in allowed:
 
 ---
 
-## 11. Complexity cheat sheet
+## 12. Complexity cheat sheet
 
 | Structure | Index | Membership | Insert typical |
 | :--- | :--- | :--- | :--- |
@@ -337,6 +537,7 @@ if user_id in allowed:
 
 ## Related
 
+- [Comprehensions (list / set / dict / generator)](./07.5-lists-tuples-sets-dicts-comprehensions.md)
 - [Basic Syntax and Data Types](./04-basic-syntax-and-data-types.md)
 - [Conditionals and Loops](./05-conditionals-and-loops.md)
 - [Functions and Classes](./08-functions-and-classes.md)

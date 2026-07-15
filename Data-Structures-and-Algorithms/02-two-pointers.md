@@ -1,7 +1,7 @@
 ---
 title: "Two Pointers"
 created: 2026-07-08
-updated: 2026-07-08
+updated: 2026-07-13
 tags: [dsa, arrays, two-pointers]
 aliases: []
 ---
@@ -200,6 +200,15 @@ This pattern is ideal for in-place filtering, deduplication, and stable partitio
 
 Because duplicates are adjacent in a sorted array, each new distinct value should be written after the previous distinct value.
 
+There are two common ways to name the write pointer:
+
+| Version | Pointer meaning | Valid prefix | Return value |
+| :--- | :--- | :--- | :--- |
+| `writer` version | Next empty slot to write into | `nums[:writer]` | `writer` |
+| `slow` version | Last kept unique index | `nums[:slow + 1]` | `slow + 1` |
+
+The `writer` version is often easier to reason about because the pointer already stores the answer length.
+
 ```python
 def remove_duplicates(nums: list[int]) -> int:
     if not nums:
@@ -215,6 +224,82 @@ def remove_duplicates(nums: list[int]) -> int:
 ```
 
 After the loop, `nums[:writer]` is the unique prefix. The values after `writer` do not matter unless the problem explicitly asks you to overwrite them.
+
+The LeetCode-style `slow` version stores the last kept index instead. Because it stores an index, you return `slow + 1` to convert that last index into a count.
+
+```python
+def remove_duplicates_slow_fast(nums: list[int]) -> int:
+    if not nums:
+        return 0
+
+    slow = 0
+
+    for fast in range(1, len(nums)):
+        if nums[fast] != nums[slow]:
+            slow += 1
+            nums[slow] = nums[fast]
+
+    return slow + 1
+```
+
+The invariant is:
+
+> At the start of each iteration, `nums[:slow + 1]` contains the unique values found so far, in order.
+
+This is why `slow + 1` is not "excluding zero." It is counting index `0` as the first kept item. If the last kept unique value is at index `2`, the valid prefix is indexes `0, 1, 2`, which is `3` items.
+
+```text
+index:  0  1  2
+nums:  [1, 2, 3]
+slow = 2
+count = slow + 1 = 3
+```
+
+`nums[slow] = nums[fast]` is the in-place write step. When `fast` finds a new unique value, `slow` first moves to the next kept slot, then the new value is copied into that slot.
+
+```text
+Before copying:
+nums = [1, 1, 2, 2, 3]
+slow = 0, fast = 2
+
+nums[fast] = 2
+nums[slow] = 1
+
+2 is new, so:
+slow += 1        # slow becomes 1
+nums[slow] = 2   # copy the new unique value into the kept prefix
+
+After copying:
+nums = [1, 2, 2, 2, 3]
+valid prefix = nums[:slow + 1] = [1, 2]
+```
+
+![Slow and fast trace for remove duplicates](./assets/02-two-pointers/slow-fast-dedup-trace.svg)
+
+This assignment matters because LeetCode checks the first returned-length values of `nums`. The suffix can contain stale values, but the prefix must be cleaned up.
+
+| Moment | `fast` sees | `slow` points at | Different? | Action | Valid prefix |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Start | `1` | `1` at index `0` | No | First value is already kept | `[1]` |
+| Duplicate | `1` | `1` at index `0` | No | Skip | `[1]` |
+| New value | `2` | `1` at index `0` | Yes | Move `slow` to `1`, copy `2` there | `[1, 2]` |
+| Duplicate | `2` | `2` at index `1` | No | Skip | `[1, 2]` |
+| New value | `3` | `2` at index `1` | Yes | Move `slow` to `2`, copy `3` there | `[1, 2, 3]` |
+
+> [!IMPORTANT]
+> The input must be sorted for this exact duplicate-removal rule. The check `nums[fast] != nums[slow]` only works because all duplicates are adjacent.
+
+### Remove Duplicates Edge Cases
+
+Use these cases to test your mental model.
+
+| Input | Result length | Valid prefix | Why |
+| :--- | ---: | :--- | :--- |
+| `[]` | `0` | `[]` | Need the empty-array guard unless the problem guarantees non-empty input. |
+| `[1]` | `1` | `[1]` | `slow = 0`, so `slow + 1 = 1`. |
+| `[1, 1, 1]` | `1` | `[1]` | `fast` never finds a value different from `nums[slow]`. |
+| `[1, 2, 3]` | `3` | `[1, 2, 3]` | Every value is new, so `slow` advances each time. |
+| `[1, 1, 2, 2, 3]` | `3` | `[1, 2, 3]` | Only the first value of each duplicate group is kept. |
 
 ### Example: Move Zeroes
 
@@ -265,6 +350,8 @@ Use this checklist before reaching for two pointers. If none of these apply, a h
 - Applying opposite-ends logic to an unsorted array without another monotonic property.
 - Moving the pointer that is easier to move instead of the pointer that is safe to discard.
 - Forgetting that `writer` usually points to the next write slot, not the last valid element.
+- Forgetting that `slow` sometimes points to the last valid index, so the length is `slow + 1`.
+- Forgetting the in-place write step. In deduplication, finding a new value is not enough; it must be copied into the valid prefix.
 - Reading the suffix after `writer` in in-place problems. The answer is usually only the prefix length.
 
 > [!NOTE]
@@ -296,6 +383,18 @@ The shorter line limits the area. Moving the taller line shrinks width while kee
 
 Everything before `writer` is already valid output. `reader` scans the remaining input and decides whether the current value should be copied into that prefix.
 
+**Why does the `slow` version of remove duplicates return `slow + 1`?**
+
+Because `slow` is the last valid index, not the count. If `slow = 2`, the valid indexes are `0`, `1`, and `2`, so the count is `3`.
+
+**Why do we write `nums[slow] = nums[fast]` after moving `slow`?**
+
+Because the problem asks us to mutate the front of `nums`. When `fast` finds a new unique value, the algorithm opens the next kept slot with `slow += 1`, then copies that new value into the valid prefix.
+
+**Why does remove duplicates need a sorted array?**
+
+The algorithm only compares the current value with the last kept value. That detects duplicates correctly only when equal values are adjacent.
+
 **How is this different from sliding window?**
 
 Sliding window tracks a range whose width grows and shrinks around a constraint. Basic two pointers usually moves each pointer in one direction according to a direct pair or prefix invariant.
@@ -303,6 +402,7 @@ Sliding window tracks a range whose width grows and shrinks around a constraint.
 ## Sources
 
 - Conversation with user on 2026-07-08.
+- Conversation with user on 2026-07-13.
 
 ## Related
 
